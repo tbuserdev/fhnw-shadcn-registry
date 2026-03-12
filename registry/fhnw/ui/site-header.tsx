@@ -35,11 +35,7 @@ function SiteHeader({ registryBasePath }: { registryBasePath?: string }) {
           {links.map((link) => (
             <a
               key={link.label}
-              href={
-                link.href.startsWith("/r/")
-                  ? joinRegistryPath(registryBasePath, link.href)
-                  : link.href
-              }
+              href={joinRegistryPath(registryBasePath, link.href)}
               className={cn(
                 buttonVariants({ variant: "ghost", size: "sm" }),
                 "no-underline",

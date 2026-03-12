@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/fhnw/ui/videos.tsx",
-      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\nfunction VideoEmbed({\n  className,\n  ratio = \"16x9\",\n  ...props\n}: React.ComponentProps<\"iframe\"> & {\n  ratio?: \"16x9\" | \"4x3\" | \"1x1\" | \"21x9\"\n}) {\n  return (\n    <div className={cn(`ratio ratio-${ratio}`, className)}>\n      <iframe {...props} />\n    </div>\n  )\n}\n\nexport { VideoEmbed }\n",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\nimport \"./fhnw-components.css\";\n\nfunction VideoEmbed({\n  className,\n  ratio = \"16x9\",\n  ...props\n}: React.ComponentProps<\"iframe\"> & {\n  ratio?: \"16x9\" | \"4x3\" | \"1x1\" | \"21x9\";\n}) {\n  const ratioMap: Record<string, string> = {\n    \"16x9\": \"aspect-video\",\n    \"4x3\": \"aspect-[4/3]\",\n    \"1x1\": \"aspect-square\",\n    \"21x9\": \"aspect-[7/3]\",\n  };\n  return (\n    <div className={cn(\"relative w-full bg-black\", ratioMap[ratio], className)}>\n      <iframe className=\"absolute inset-0 w-full h-full\" {...props} />\n    </div>\n  );\n}\n\nexport { VideoEmbed };\n",
       "type": "registry:ui"
     }
   ],
