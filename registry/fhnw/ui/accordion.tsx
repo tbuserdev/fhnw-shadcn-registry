@@ -1,4 +1,5 @@
 import * as React from "react";
+import { CaretDownIcon } from "@phosphor-icons/react";
 
 import { cn } from "@/lib/utils";
 import "./fhnw-components.css";
@@ -69,11 +70,7 @@ function Accordion({
     <AccordionContext.Provider
       value={{ type, collapsible, value: currentValue, setValue }}
     >
-      <div
-        data-slot="accordion"
-        className={cn("space-y-2", className)}
-        {...props}
-      />
+      <div data-slot="accordion" className={cn("", className)} {...props} />
     </AccordionContext.Provider>
   );
 }
@@ -119,7 +116,7 @@ function AccordionItem({
     >
       <div
         data-slot="accordion-item"
-        className={cn("border border-border", className)}
+        className={cn("border-b border-border", className)}
         {...props}
       />
     </AccordionItemContext.Provider>
@@ -143,7 +140,9 @@ function AccordionTrigger({
         data-slot="accordion-trigger"
         type="button"
         className={cn(
-          "flex w-full items-center justify-between bg-gray-100 px-4 py-3 font-semibold text-black transition-colors hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400",
+          "flex w-full items-center justify-between px-5 py-4 text-left font-semibold text-foreground transition-colors hover:bg-[#deded9] focus-visible:outline-none",
+          context.isOpen && "bg-[#fef387] hover:bg-[#fef387]",
+          !context.isOpen && "bg-muted",
           className,
         )}
         aria-expanded={context.isOpen}
@@ -152,6 +151,12 @@ function AccordionTrigger({
         {...props}
       >
         {children}
+        <CaretDownIcon
+          className={cn(
+            "size-4 shrink-0 transition-transform duration-200",
+            context.isOpen && "rotate-180",
+          )}
+        />
       </button>
     </h2>
   );
@@ -172,15 +177,11 @@ function AccordionContent({
     <div
       data-slot="accordion-content"
       id={context.panelId}
-      className={cn(
-        "max-h-0 overflow-hidden transition-all duration-300",
-        context.isOpen && "max-h-96",
-        className,
-      )}
+      className={cn(context.isOpen ? "block" : "hidden", className)}
       aria-labelledby={context.headingId}
       {...props}
     >
-      <div className="border-t border-border px-4 py-3">{children}</div>
+      <div className="px-5 py-4">{children}</div>
     </div>
   );
 }

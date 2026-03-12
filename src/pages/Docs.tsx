@@ -64,12 +64,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/registry/fhnw/ui/dropdown";
+import { Icon, SocialIconLink, SocialIcons } from "@/registry/fhnw/ui/icons";
 import {
-  Icon,
-  SocialIconLink,
-  SocialIcons,
-} from "@/registry/fhnw/ui/icons";
-import { Figure, FigureCaption, FigureImage, Image } from "@/registry/fhnw/ui/images";
+  Figure,
+  FigureCaption,
+  FigureImage,
+  Image,
+} from "@/registry/fhnw/ui/images";
 import { LoadingSpinner } from "@/registry/fhnw/ui/loading-spinner";
 import {
   Modal,
@@ -166,7 +167,7 @@ export function Docs() {
 </div>
       `,
       reactComponent: (
-        <Accordion className="w-full">
+        <Accordion className="w-full" defaultValue="item-1">
           <AccordionItem value="item-1">
             <AccordionTrigger>Accordion Item #1</AccordionTrigger>
             <AccordionContent>
@@ -401,20 +402,23 @@ export function Docs() {
             <CarouselItem active>
               <img
                 src="https://dummyimage.com/1076x420/000/fff"
-                className="d-block w-100"
+                className="block w-full"
                 alt="Campus"
               />
               <CarouselCaption>
                 <a href="#">
                   <small>Second slide label</small>
-                  <h5>Some representative placeholder content for the second slide.</h5>
+                  <h5>
+                    Some representative placeholder content for the second
+                    slide.
+                  </h5>
                 </a>
               </CarouselCaption>
             </CarouselItem>
             <CarouselItem>
               <img
                 src="https://dummyimage.com/1076x420/fde703/000"
-                className="d-block w-100"
+                className="block w-full"
                 alt="Campus"
               />
               <CarouselCaption>
@@ -495,9 +499,21 @@ export function Docs() {
       reactComponent: (
         <div className="flex flex-col gap-6">
           <div className="flex gap-3">
-            <Icon name="linkedin" size="md" className="d-flex justify-content-center" />
-            <Icon name="instagram" size="md" className="d-flex justify-content-center" />
-            <Icon name="youtube" size="md" className="d-flex justify-content-center" />
+            <Icon
+              name="linkedin"
+              size="md"
+              className="d-flex justify-content-center"
+            />
+            <Icon
+              name="instagram"
+              size="md"
+              className="d-flex justify-content-center"
+            />
+            <Icon
+              name="youtube"
+              size="md"
+              className="d-flex justify-content-center"
+            />
           </div>
           <SocialIcons>
             <SocialIconLink href="#" name="instagram" title="Instagram" />
@@ -586,8 +602,8 @@ export function Docs() {
               <OffcanvasClose />
             </OffcanvasHeader>
             <OffcanvasBody>
-              Some text as placeholder. In real life you can have the elements you
-              have chosen.
+              Some text as placeholder. In real life you can have the elements
+              you have chosen.
             </OffcanvasBody>
           </OffcanvasContent>
         </Offcanvas>

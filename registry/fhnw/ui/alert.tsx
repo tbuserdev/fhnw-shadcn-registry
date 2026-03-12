@@ -4,19 +4,19 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import "./fhnw-components.css";
 
-const alertVariants = cva("relative w-full rounded border p-4", {
+const alertVariants = cva("relative px-6 py-6 mb-4 text-base", {
   variants: {
     variant: {
-      default: "border-blue-300 bg-blue-50 text-blue-900",
-      primary: "border-blue-300 bg-blue-50 text-blue-900",
-      secondary: "border-gray-300 bg-gray-50 text-gray-900",
-      success: "border-green-300 bg-green-50 text-green-900",
-      destructive: "border-red-300 bg-red-50 text-red-900",
-      danger: "border-red-300 bg-red-50 text-red-900",
-      warning: "border-yellow-300 bg-yellow-50 text-yellow-900",
-      info: "border-cyan-300 bg-cyan-50 text-cyan-900",
-      light: "border-gray-200 bg-gray-100 text-gray-900",
-      dark: "border-gray-700 bg-gray-900 text-gray-100",
+      default: "bg-black/[0.08] text-black",
+      primary: "bg-black/[0.08] text-black",
+      secondary: "bg-[#fde703]/30 text-black",
+      success: "bg-[#28a745]/15 text-[#0a3622]",
+      destructive: "bg-[#df305b]/15 text-[#58151c]",
+      danger: "bg-[#df305b]/15 text-[#58151c]",
+      warning: "bg-[#fbd100]/20 text-black",
+      info: "bg-[#dee2e6] text-black",
+      light: "bg-[#f1f1ee] text-black",
+      dark: "bg-[#dee2e6]/70 text-black",
     },
   },
   defaultVariants: {
@@ -43,7 +43,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-title"
-      className={cn("mb-2 font-semibold", className)}
+      className={cn("mb-1 font-semibold text-[1.1em]", className)}
       {...props}
     />
   );

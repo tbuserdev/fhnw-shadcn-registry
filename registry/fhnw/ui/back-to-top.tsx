@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ArrowUpIcon } from "@phosphor-icons/react";
 
 import { cn } from "@/lib/utils";
 import "./fhnw-components.css";
@@ -29,7 +30,7 @@ function BackToTop({
       href="#top"
       aria-label="Back to top"
       className={cn(
-        "fixed bottom-6 right-6 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black text-white hover:bg-gray-900 transition-opacity focus:outline-none focus:ring-2 focus:ring-blue-400",
+        "fixed bottom-6 right-6 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black text-white hover:bg-gray-900 transition-opacity focus-visible:outline-none",
         !visible && "pointer-events-none",
         className,
       )}
@@ -45,7 +46,9 @@ function BackToTop({
         window.scrollTo({ top: 0, behavior: "smooth" });
       }}
       {...props}
-    />
+    >
+      <ArrowUpIcon className="size-5" />
+    </a>
   );
 }
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import "./fhnw-components.css";
+import "./icons.css";
 
 type IconName =
   | "youtube"

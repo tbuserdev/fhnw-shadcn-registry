@@ -1,4 +1,282 @@
-## Plan: Bootstrap-Free Visual Parity + Docs Overhaul (v2)
+## Plan: Bootstrap-Free Visual Parity + Docs Overhaul (v3 — Post-Audit)
+
+> Last visual audit: 12. März 2026 via Chrome MCP inspection of `http://localhost:5173/docs`
+
+---
+
+## Current Status
+
+**All `fhnw-bootstrap.css` imports have been removed.** Every registry component now imports only `fhnw-components.css` (or `icons.css` — pending fix below). The migration structure is complete, but a visual audit reveals ~10 components with incorrect Tailwind values that don't match the FHNW Bootstrap 5 reference. The issues are documented below.
+
+---
+
+## Confirmed Working (no changes needed)
+
+| Component | Status |
+|---|---|
+| `button.tsx` | ✅ Visual match |
+| `badge.tsx` | ✅ Visual match |
+| `card.tsx` | ✅ Visual match |
+| `input.tsx` | ✅ Visual match |
+| `textarea.tsx` | ✅ Visual match |
+| `select.tsx` | ✅ Visual match |
+| `modal.tsx` | ✅ Trigger matches |
+| `offcanvas.tsx` | ✅ Trigger matches |
+| `collapse.tsx` | ✅ Works functionally |
+| `breadcrumb.tsx` | ✅ Close match (/ separator vs ▶) |
+| `images.tsx` | ✅ Matches |
+| `videos.tsx` | ✅ Matches |
+| `tables.tsx` | ✅ Matches |
+| `teaser.tsx` | ✅ Renders correctly |
+| `testimonial.tsx` | ✅ Layout correct |
+| `tooltip.tsx` | ✅ Trigger matches |
+| `popover.tsx` | ✅ Pre-opened state shown correctly |
+| `site-header.tsx` | ✅ Already pure Tailwind |
+| `nav-tabs.tsx` | Re-export of tabs.tsx — fixed when tabs is fixed |
+
+---
+
+## Issues Found — Ordered by Priority
+
+### P0 — Broken / Not Rendering
+
+#### Fix 1: `carousel.tsx` — Invisible (zero height container)
+
+**Root cause:** `CarouselItem` applies `absolute inset-0` to ALL items regardless of active state. Since all children are absolutely positioned, the parent container collapses to zero height.
+
+**Fix:**
+- Active item: `relative w-full` (defines container height)
+- Inactive item: `absolute inset-0 opacity-0 pointer-events-none`
+- Both: `transition-opacity duration-500`
+- Also fix image classes in `Docs.tsx`: `className="d-block w-100"` → `className="block w-full"`
+
+#### Fix 2: `icons.tsx` — Icons not showing
+
+**Root cause:** `icons.tsx` imports `./fhnw-components.css` instead of `./icons.css`. The `icons.css` file exists and has all the mask-image definitions, but it's never imported.
+
+**Fix:** Change `import "./fhnw-components.css"` → `import "./icons.css"` in `icons.tsx`.
+
+---
+
+### P1 — Wrong FHNW Colors / Visual Mismatch
+
+#### Fix 3: `alert.tsx` — Wrong color system
+
+**Current:** Uses generic Tailwind colors with visible borders (blue, red, yellow, cyan etc.) — looks like shadcn default alerts, not FHNW Bootstrap.
+
+**Fix — rewrite `alertVariants`:**
+```ts
+const alertVariants = cva("relative px-6 py-6 mb-4 text-base", {
+  variants: {
+    variant: {
+      default:      "bg-black/[0.08] text-black",
+      primary:      "bg-black/[0.08] text-black",
+      secondary:    "bg-[#fde703]/30 text-black",
+      success:      "bg-[#28a745]/15 text-[#0a3622]",
+      destructive:  "bg-[#df305b]/15 text-[#58151c]",
+      danger:       "bg-[#df305b]/15 text-[#58151c]",
+      warning:      "bg-[#fbd100]/20 text-black",
+      info:         "bg-[#dee2e6] text-black",
+      light:        "bg-[#f1f1ee] text-black",
+      dark:         "bg-[#dee2e6]/70 text-black",
+    },
+  },
+  defaultVariants: { variant: "default" },
+});
+```
+- Remove `rounded border` from the base class (Bootstrap alerts have no border or radius)
+- `AlertTitle`: `font-semibold mb-1 text-[1.1em]`
+
+#### Fix 4: `accordion.tsx` — Wrong colors, missing open state, no caret icon
+
+**Current issues:**
+- `Accordion` root: `space-y-2` adds gaps between items — should be `divide-y divide-border` or no wrapper class
+- `AccordionItem`: `border border-border` wraps item — should be only `border-b border-border`
+- `AccordionTrigger`: `bg-gray-100 hover:bg-gray-200 focus:ring-blue-400` — not FHNW colors
+- Open state: no yellow background applied to open trigger
+- No caret icon that rotates on open
+
+**Fix:**
+- `Accordion` root: remove `space-y-2`, add no wrapper class (or just `""`)
+- `AccordionItem`: replace `border border-border` → `border-b border-border`
+- `AccordionTrigger` closed: `w-full flex items-center justify-between px-5 py-4 text-left bg-muted text-foreground font-semibold hover:bg-[#deded9] focus-visible:outline-none transition-colors`
+- `AccordionTrigger` open: append `bg-[#fef387] hover:bg-[#fef387]` when `context.isOpen`
+- Add Phosphor `CaretDownIcon` as last element in trigger: `<CaretDownIcon className={cn("size-4 shrink-0 transition-transform duration-200", context.isOpen && "rotate-180")} />`
+- `AccordionContent` animation: `max-h-0 overflow-hidden transition-[max-height] duration-300` closed, `max-h-[500px]` open (or use `hidden`/`block` for reliability)
+- Content inner div: `px-5 py-4`
+
+Also fix in `Docs.tsx`: Add `defaultValue="item-1"` to the Accordion example so the preview shows the open state.
+
+#### Fix 5: `tabs.tsx` — Active tab underline is black, should be FHNW yellow
+
+**Current:** `isActive && "border-b-2 border-black"` — black underline
+
+**Fix:** Change to `isActive && "border-b-2 border-[#fde703] font-semibold"` (FHNW yellow underline)
+- Base trigger: remove `focus:ring-blue-400`, replace with `focus-visible:outline-none`
+- `TabsContent`: change from opacity transition to `hidden`/`block`: `hidden` when inactive, `block` when active (simplier, accessible)
+- `TabsList`: `flex border-b border-border` — retain the bottom border on the list
+
+#### Fix 6: `pagination.tsx` — Active page is black, should be yellow
+
+**Current:** `isActive && "border-black bg-black text-white"` — black active page
+
+**Fix:** `isActive && "bg-[#fde703] border-[#fde703] text-black"`
+- Base link: `border-gray-300` → `border-[#deded9]`; add `border-2` for Bootstrap-matched thick border; `rounded` → remove radius (`--radius: 0px`); `px-3 py-[0.375rem]`; `text-sm` → `text-base`
+- Focus: `focus-visible:outline-none` (remove blue ring)
+
+#### Fix 7: `dropdown.tsx` — Menu background is white, should be yellow
+
+**Current:** `DropdownMenuContent` has `bg-white border border-gray-300 rounded shadow-lg` — generic
+
+**Fix:**
+- `DropdownMenuContent`: `min-w-[10rem] bg-[#fde703] py-[10px] px-[5px] list-none m-0 shadow-none` (no border, no rounded)
+- `DropdownMenuItem`: `hover:bg-black/10` (not `hover:bg-gray-100`)
+- `DropdownMenuLink`: same
+- `DropdownMenuTrigger`: add `<CaretDownIcon className="size-4" />` Phosphor icon as last child
+- Also in `Docs.tsx` — the dropdown preview renders with `defaultOpen` — verify it sets `defaultOpen={true}` so it shows open
+
+#### Fix 8: `radio-group.tsx` — Checked state shows yellow fill instead of black
+
+**Current:** `data-checked:bg-secondary` applies `background-color: var(--secondary)` = `#fde703` (yellow)
+Indicator dot: `bg-black` = black dot inside yellow fill = barely visible.
+
+**Fix:**
+- Change `data-checked:bg-secondary` → `data-checked:bg-black` (dark fill)
+- Change indicator dot `bg-black` → `bg-white` (white dot inside dark fill)
+
+---
+
+### P2 — Wrong Dimensions / Sizing
+
+#### Fix 9: `loading-spinner.tsx` — Wrong centering and spinner style
+
+**Current:**
+- Padding: `p-7` — too small, should be `p-[3rem]` to match Bootstrap
+- Spinner: `border-4 border-gray-300 border-t-black` — uses colored-top approach; Bootstrap uses `border-r-transparent` approach
+- Spinner is visually smaller and positioned at top-left of the preview container
+
+**Fix:**
+- Container: `flex justify-center items-center p-[3rem]`
+- Spinner: `inline-block size-8 rounded-full border-[0.25em] border-current border-r-transparent animate-spin align-[-0.125em]`
+- `variant="default"`: no color class (inherits foreground)
+- `variant="white"`: container `bg-black`, spinner `text-white`
+
+#### Fix 10: `progressbar.tsx` — Too short, wrong colors
+
+**Current:** `Progress` container `h-2` (8px), `bg-gray-200`, `rounded` — Bootstrap progress is 24px tall, muted background, no radius.
+
+**Fix:**
+- `Progress`: `w-full overflow-hidden bg-[#f1f1ee] h-6` (remove `rounded`)
+- `ProgressBar` fill: `h-full flex items-center justify-center text-white text-xs font-medium bg-[#767573] transition-[width]`
+- `striped`: `bg-[linear-gradient(45deg,rgba(255,255,255,0.15)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.15)_50%,rgba(255,255,255,0.15)_75%,transparent_75%,transparent)] bg-[length:1rem_1rem]` — use custom class `fhnw-progress-striped` already referenced in the component; define it in `fhnw-components.css`
+- `animated`: `animate-[progress-bar-stripes_1s_linear_infinite_reverse]` already referenced; add styles to `fhnw-components.css`
+
+---
+
+### P3 — Docs.tsx Fixes
+
+#### Fix 11: `Docs.tsx` — Accordion example should default to open
+
+Add `defaultValue="item-1"` to the `<Accordion>` in the docs example so the preview shows item 1 in its open (yellow) state matching the Bootstrap reference.
+
+#### Fix 12: `Docs.tsx` — Carousel image className uses Bootstrap classes
+
+Change `className="d-block w-100"` → `className="block w-full"` on both `<img>` elements inside the `<Carousel>` example.
+
+#### Fix 13: `back-to-top.tsx` — Missing icon content
+
+The `<BackToTop>` component's `<a>` element has no children. The Button appears as a black circle with no visible arrow. Add `<ArrowUpIcon className="size-5" />` from `@phosphor-icons/react` as the default child content (or render it unconditionally inside the component when children is undefined).
+
+---
+
+### P4 — CSS Companion File Additions
+
+#### Fix 14: `fhnw-components.css` — Add progress bar utility classes
+
+The `progressbar.tsx` already uses class names `fhnw-progress-striped` and `fhnw-progress-animated`, but these are not defined in `fhnw-components.css`. Add:
+
+```css
+/* Progress Bar Striped */
+.fhnw-progress-striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+}
+
+/* Progress Bar Animated */
+.fhnw-progress-animated {
+  animation: progress-bar-stripes 1s linear infinite reverse;
+}
+```
+
+#### Fix 15: `fhnw-components.css` — Tooltip and popover arrow directional variants
+
+The `.fhnw-tooltip-arrow` and `.fhnw-popover-arrow` classes exist but have no directional border values. The border-triangle approach needs data-placement variants:
+
+```css
+/* Tooltip arrows by placement */
+.fhnw-tooltip-arrow[data-placement="top"] {
+  bottom: -6px; left: 50%; transform: translateX(-50%);
+  border-width: 6px 6px 0;
+  border-color: #000 transparent transparent transparent;
+}
+.fhnw-tooltip-arrow[data-placement="bottom"] {
+  top: -6px; left: 50%; transform: translateX(-50%);
+  border-width: 0 6px 6px;
+  border-color: transparent transparent #000 transparent;
+}
+/* etc. for start/end placements */
+
+/* Popover arrows by placement */
+.fhnw-popover-arrow[data-placement="bottom"] {
+  top: -8px; left: 50%; transform: translateX(-50%);
+  border-width: 0 8px 8px;
+  border-color: transparent transparent #000 transparent;
+}
+/* etc. */
+```
+
+---
+
+## Verification Checklist (after all fixes)
+
+1. `grep -r "fhnw-bootstrap.css" registry/` → zero results ✅ (already passing)
+2. `grep -r "import.*bootstrap" registry/` → only `icons.css` in `icons.tsx`
+3. Visual spot-checks on `pnpm dev` `/docs`:
+   - **Accordion**: gray closed, yellow open (#fef387), caret rotates ☐
+   - **Alert**: no border, correct subtle-tint backgrounds ☐
+   - **Tabs**: yellow underline on active tab ☐
+   - **Pagination**: yellow active page ☐
+   - **Dropdown**: yellow menu background ☐
+   - **Carousel**: renders images, controls work ☐
+   - **Radio**: black fill + white dot on checked ☐
+   - **Loading Spinner**: centered, correct border style ☐
+   - **Progressbar**: h-6, muted bg, gray fill ☐
+   - **Icons**: social icons render using mask-image ☐
+   - **Back-to-top**: upward arrow visible in button ☐
+4. `pnpm registry:build` → no errors ☐
+5. `pnpm build` → no TypeScript errors ☐
+
+---
+
+## Out of Scope (deferred)
+
+- Docs sidebar, copy buttons, component playground (Phase 15–17 from v2 plan)
+- Dark mode support
+- Offcanvas/Modal interactive click-through UX testing
+- Tooltip/Popover arrow pixel-perfect positioning (functional, just not arrow-positioned yet)
+
+---
+
+## Plan: Bootstrap-Free Visual Parity + Docs Overhaul (v2 — original, superseded)
 
 **Core mandate:** All 22 registry components that currently `import "./fhnw-bootstrap.css"` must have that import removed. Zero Bootstrap class names (`btn-*`, `alert-*`, `accordion-*`, etc.) anywhere in the registry. Visual output must remain **pixel-comparable** to the FHNW Bootstrap 5 theme using only Tailwind utilities and a minimal custom CSS complement.
 

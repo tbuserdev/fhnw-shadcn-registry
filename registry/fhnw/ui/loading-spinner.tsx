@@ -13,16 +13,17 @@ function LoadingSpinner({
   return (
     <div
       className={cn(
-        "flex items-center justify-center p-7",
-        variant === "white" && "bg-black bg-opacity-100",
+        "flex items-center justify-center p-[3rem]",
+        variant === "white" && "bg-black",
         className,
       )}
       {...props}
     >
       <div
         className={cn(
-          "inline-block h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-black",
-          variant === "white" && "border-gray-700 border-t-white",
+          "inline-block size-8 rounded-full border-[0.25em] border-current border-r-transparent animate-spin align-[-0.125em]",
+          variant === "white" && "text-white",
+          variant === "default" && "text-foreground",
         )}
         role="status"
       >

@@ -28,6 +28,25 @@
   }
 }
 
+/* Progress Bar Utility Classes */
+.fhnw-progress-striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+}
+
+.fhnw-progress-animated {
+  animation: progress-bar-stripes 1s linear infinite reverse;
+}
+
 /* Tooltip Arrow */
 .fhnw-tooltip-arrow {
   position: absolute;
@@ -36,12 +55,76 @@
   border-style: solid;
 }
 
+.fhnw-tooltip-arrow[data-placement="top"] {
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0;
+  border-color: #000 transparent transparent transparent;
+}
+
+.fhnw-tooltip-arrow[data-placement="bottom"] {
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 6px 6px;
+  border-color: transparent transparent #000 transparent;
+}
+
+.fhnw-tooltip-arrow[data-placement="start"] {
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 6px;
+  border-color: transparent transparent transparent #000;
+}
+
+.fhnw-tooltip-arrow[data-placement="end"] {
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 6px 6px 0;
+  border-color: transparent #000 transparent transparent;
+}
+
 /* Popover Arrow */
 .fhnw-popover-arrow {
   position: absolute;
   width: 0;
   height: 0;
   border-style: solid;
+}
+
+.fhnw-popover-arrow[data-placement="top"] {
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-color: #000 transparent transparent transparent;
+}
+
+.fhnw-popover-arrow[data-placement="bottom"] {
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 8px 8px;
+  border-color: transparent transparent #000 transparent;
+}
+
+.fhnw-popover-arrow[data-placement="start"] {
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 8px 0 8px 8px;
+  border-color: transparent transparent transparent #000;
+}
+
+.fhnw-popover-arrow[data-placement="end"] {
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 8px 8px 8px 0;
+  border-color: transparent #000 transparent transparent;
 }
 
 /* Offcanvas Slide Animation */

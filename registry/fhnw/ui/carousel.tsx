@@ -130,8 +130,10 @@ function CarouselItem({
   return (
     <div
       className={cn(
-        "absolute inset-0 transition-opacity duration-500",
-        active ? "opacity-100 z-10" : "opacity-0 z-0",
+        active
+          ? "relative w-full"
+          : "absolute inset-0 opacity-0 pointer-events-none",
+        "transition-opacity duration-500",
         className,
       )}
       {...props}

@@ -9,7 +9,7 @@ const Progress = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("h-2 w-full bg-gray-200 rounded overflow-hidden", className)}
+    className={cn("w-full overflow-hidden bg-[#f1f1ee] h-6", className)}
     {...props}
   />
 ));
@@ -27,7 +27,7 @@ const ProgressBar = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "bg-black text-white text-xs flex items-center justify-center transition-all duration-300",
+      "h-full flex items-center justify-center text-white text-xs font-medium bg-[#767573] transition-[width] duration-300",
       striped && "fhnw-progress-striped",
       animated && "fhnw-progress-animated",
       className,

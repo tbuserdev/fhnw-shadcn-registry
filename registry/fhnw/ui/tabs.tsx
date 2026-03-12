@@ -75,8 +75,8 @@ function TabsTrigger({
       <button
         data-slot="tabs-trigger"
         className={cn(
-          "px-4 py-2 font-medium text-black transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400",
-          isActive && "border-b-2 border-black",
+          "px-4 py-2 font-medium text-black transition-colors hover:bg-gray-100 focus-visible:outline-none",
+          isActive && "border-b-2 border-[#fde703] font-semibold",
           className,
         )}
         type="button"
@@ -108,8 +108,8 @@ function TabsContent({
     <div
       data-slot="tabs-content"
       className={cn(
-        "py-4 opacity-0 transition-opacity duration-300",
-        context.value === value && "opacity-100",
+        "py-4",
+        context.value === value ? "block" : "hidden",
         className,
       )}
       role="tabpanel"

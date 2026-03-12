@@ -40,8 +40,8 @@ const PaginationLink = React.forwardRef<
     ref={ref}
     aria-current={isActive ? "page" : undefined}
     className={cn(
-      "inline-flex items-center justify-center rounded border border-gray-300 px-3 py-1 text-sm transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400",
-      isActive && "border-black bg-black text-white",
+      "inline-flex items-center justify-center border-2 border-[#deded9] px-3 py-[0.375rem] text-base transition-colors hover:bg-gray-100 focus-visible:outline-none",
+      isActive && "bg-[#fde703] border-[#fde703] text-black",
       className,
     )}
     {...props}

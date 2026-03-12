@@ -1,4 +1,5 @@
 import * as React from "react";
+import { CaretDownIcon } from "@phosphor-icons/react";
 
 import { cn } from "@/lib/utils";
 import "./fhnw-components.css";
@@ -98,7 +99,7 @@ function DropdownMenuTrigger({
     <button
       type="button"
       className={cn(
-        "inline-flex items-center justify-center gap-2 cursor-pointer font-medium transition-colors outline-none bg-[#fde703] text-black hover:bg-[#fcdd00] focus:outline-none focus:ring-2 focus:ring-blue-400 px-5 py-2.5 text-sm",
+        "inline-flex items-center justify-center gap-2 cursor-pointer font-medium transition-colors outline-none bg-[#fde703] text-black hover:bg-[#fcdd00] focus-visible:outline-none px-5 py-2.5 text-sm",
         className,
       )}
       aria-expanded={context.open}
@@ -112,6 +113,7 @@ function DropdownMenuTrigger({
       {...props}
     >
       {children}
+      <CaretDownIcon className="size-4" />
     </button>
   );
 }
@@ -129,7 +131,7 @@ function DropdownMenuContent({
   return (
     <ul
       className={cn(
-        "absolute mt-2 min-w-48 rounded border border-gray-300 bg-white shadow-lg",
+        "absolute mt-2 min-w-[10rem] bg-[#fde703] py-[10px] px-[5px] list-none m-0 shadow-none",
         context.align === "end" ? "right-0" : "left-0",
         !context.open && "hidden",
         className,
@@ -149,7 +151,7 @@ function DropdownMenuItem({
       <button
         type="button"
         className={cn(
-          "w-full px-4 py-2 text-left hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black",
+          "w-full px-4 py-2 text-left hover:bg-black/10 focus-visible:outline-none text-black",
           className,
         )}
         {...props}
@@ -169,7 +171,7 @@ function DropdownMenuLink({
     <li>
       <a
         className={cn(
-          "block w-full px-4 py-2 text-left hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black",
+          "block w-full px-4 py-2 text-left hover:bg-black/10 focus-visible:outline-none text-black",
           className,
         )}
         {...props}
