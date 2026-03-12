@@ -124,8 +124,8 @@ export function Docs() {
       bootstrapHtml: `
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item"><a href="#">Library</a></li>
+    <li class="breadcrumb-item"><a>Home</a></li>
+    <li class="breadcrumb-item"><a>Library</a></li>
     <li class="breadcrumb-item active" aria-current="page">Data</li>
   </ol>
 </nav>
@@ -154,11 +154,11 @@ export function Docs() {
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <button class="accordion-button" type="button" aria-expanded="true" aria-controls="collapseOne">
         Accordion Item #1
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
       <div class="accordion-body">
         <strong>This is the first item's accordion body.</strong>
       </div>
@@ -281,12 +281,12 @@ export function Docs() {
     <textarea class="form-control" rows="3"></textarea>
   </div>
   <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="check1">
+    <input type="checkbox" class="form-check-input" id="check1" checked>
     <label class="form-check-label" for="check1">Check me out</label>
   </div>
   <div class="mb-3">
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
       <label class="form-check-label" for="flexRadioDefault1">
         Default radio
       </label>
@@ -336,10 +336,10 @@ export function Docs() {
       bootstrapHtml: `
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Active</a>
+    <a class="nav-link active" aria-current="page">Active</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link">Link</a>
   </li>
 </ul>
       `,
@@ -368,7 +368,7 @@ export function Docs() {
       installCommand: "pnpm dlx shadcn@latest add @fhnw/back-to-top",
       bootstrapHtml: `
 <div style="position:relative;height:160px;background:#f7f7f5;">
-  <a href="#top" class="back-to-top" style="opacity:0.4;"></a>
+  <span class="back-to-top" style="opacity:0.4;"></span>
 </div>
       `,
       reactComponent: (
@@ -387,10 +387,10 @@ export function Docs() {
     <div class="carousel-item active">
       <img src="https://dummyimage.com/1076x420/000/fff" class="d-block w-100" alt="..." />
       <div class="carousel-caption">
-        <a href="#">
+        <div>
           <small>Second slide label</small>
           <h5>Some representative placeholder content for the second slide.</h5>
-        </a>
+        </div>
       </div>
     </div>
   </div>
@@ -465,11 +465,11 @@ export function Docs() {
   <button class="btn btn-secondary dropdown-toggle" type="button" aria-expanded="true">
     Large Dropdown
   </button>
-  <ul class="dropdown-menu show">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
+  <ul class="dropdown-menu show" style="display:block;position:static;transform:none;">
+    <li><span class="dropdown-item">Action</span></li>
+    <li><span class="dropdown-item">Another action</span></li>
     <li><hr class="dropdown-divider" /></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
+    <li><span class="dropdown-item">Separated link</span></li>
   </ul>
 </div>
       `,
@@ -567,7 +567,21 @@ export function Docs() {
       name: "Modal",
       installCommand: "pnpm dlx shadcn@latest add @fhnw/modal",
       bootstrapHtml: `
-<button class="btn btn-primary" type="button">Launch demo modal</button>
+<div class="modal show" style="display:block;position:relative;" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="margin:0 auto;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">Modal content ...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
       `,
       reactComponent: (
         <Modal>
@@ -591,7 +605,17 @@ export function Docs() {
       name: "Offcanvas",
       installCommand: "pnpm dlx shadcn@latest add @fhnw/offcanvas",
       bootstrapHtml: `
-<button class="btn btn-primary" type="button">Open offcanvas</button>
+<div style="position:relative;height:18rem;overflow:hidden;background:#f7f7f5;">
+  <div class="offcanvas offcanvas-end show" style="visibility:visible;position:absolute;transform:none;top:0;right:0;height:100%;">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Offcanvas</h5>
+      <button type="button" class="btn-close" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      Some text as placeholder. In real life you can have the elements you have chosen.
+    </div>
+  </div>
+</div>
       `,
       reactComponent: (
         <Offcanvas>
@@ -616,11 +640,11 @@ export function Docs() {
       bootstrapHtml: `
 <nav aria-label="Page navigation example">
   <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    <li class="page-item"><span class="page-link">Previous</span></li>
+    <li class="page-item"><span class="page-link">1</span></li>
+    <li class="page-item active"><span class="page-link">2</span></li>
+    <li class="page-item"><span class="page-link">3</span></li>
+    <li class="page-item"><span class="page-link">Next</span></li>
   </ul>
 </nav>
       `,
@@ -653,7 +677,13 @@ export function Docs() {
       name: "Popover",
       installCommand: "pnpm dlx shadcn@latest add @fhnw/popover",
       bootstrapHtml: `
-<button type="button" class="btn btn-primary">Popover content ...</button>
+<div style="padding-left:1rem;">
+  <div class="popover bs-popover-end show position-relative" role="tooltip" style="display:block;">
+    <div class="popover-arrow"></div>
+    <h3 class="popover-header">Popover title</h3>
+    <div class="popover-body">Content goes here ...</div>
+  </div>
+</div>
       `,
       reactComponent: (
         <Popover defaultOpen placement="right">
@@ -735,7 +765,7 @@ export function Docs() {
       installCommand: "pnpm dlx shadcn@latest add @fhnw/teaser",
       bootstrapHtml: `
 <div class="teaser card mb-4 col-xs-12 col-sm-6 col-lg-4 p-0">
-  <a href="#" title="">
+  <div title="">
     <div class="card-body">
       <div class="position-relative">
         <img src="https://dummyimage.com/600x360/000/fff" alt="" aria-hidden="true" class="img-fluid w-100" />
@@ -744,7 +774,7 @@ export function Docs() {
       <h2 class="card-title no-line">Teaser title</h2>
       <p>Teaser content</p>
     </div>
-  </a>
+  </div>
 </div>
       `,
       reactComponent: (
@@ -787,7 +817,12 @@ export function Docs() {
       name: "Tooltip",
       installCommand: "pnpm dlx shadcn@latest add @fhnw/tooltip",
       bootstrapHtml: `
-<button type="button" class="btn btn-secondary">Tooltip on top</button>
+<div style="padding-top:0.5rem;">
+  <div class="tooltip bs-tooltip-top show position-relative" role="tooltip" style="display:inline-block;">
+    <div class="tooltip-arrow"></div>
+    <div class="tooltip-inner">Tooltip on top</div>
+  </div>
+</div>
       `,
       reactComponent: (
         <Tooltip content="Tooltip on top">

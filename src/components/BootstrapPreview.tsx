@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useId, useRef, useState } from "react"
 
 interface BootstrapPreviewProps {
   html: string
@@ -7,6 +7,7 @@ interface BootstrapPreviewProps {
 export function BootstrapPreview({ html }: BootstrapPreviewProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const [height, setHeight] = useState("100px")
+  const instanceId = useId().replace(/:/g, "-")
 
   const baseUrl = import.meta.env.BASE_URL
   const cssPath = `${baseUrl}fhnw-bootstrap-v5/css/fhnw.min.css`.replace(/^\/+/, "/")
@@ -20,14 +21,21 @@ export function BootstrapPreview({ html }: BootstrapPreviewProps) {
       <link rel="stylesheet" href="${cssPath}">
       <style>
         body { padding: 1rem; margin: 0; background: transparent; }
+        .bootstrap-preview-root,
+        .bootstrap-preview-root * {
+          pointer-events: none !important;
+          user-select: none;
+        }
       </style>
     </head>
     <body>
-      ${html}
+      <div class="bootstrap-preview-root" aria-hidden="true">
+        ${html}
+      </div>
       <script>
         function sendHeight() {
           const height = document.body.scrollHeight;
-          window.parent.postMessage({ type: 'resize', height: height, id: 'bootstrap-preview' }, '*');
+          window.parent.postMessage({ type: 'resize', height: height, id: '${instanceId}' }, '*');
         }
         window.addEventListener('load', sendHeight);
         window.addEventListener('resize', sendHeight);
@@ -41,13 +49,13 @@ export function BootstrapPreview({ html }: BootstrapPreviewProps) {
 
   useEffect(() => {
     const handleMessage = (e: MessageEvent) => {
-      if (e.data.type === 'resize' && e.data.id === 'bootstrap-preview') {
+      if (e.data.type === 'resize' && e.data.id === instanceId) {
         setHeight(`${e.data.height}px`)
       }
     }
     window.addEventListener('message', handleMessage)
     return () => window.removeEventListener('message', handleMessage)
-  }, [])
+  }, [instanceId])
 
   return (
     <iframe
