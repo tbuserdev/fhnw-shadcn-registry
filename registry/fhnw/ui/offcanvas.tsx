@@ -1,16 +1,17 @@
-import * as React from "react"
-import { createPortal } from "react-dom"
+import * as React from "react";
+import { createPortal } from "react-dom";
 
-import { cn } from "@/lib/utils"
-import "./fhnw-bootstrap.css"
+import { cn } from "@/lib/utils";
+import "./fhnw-components.css";
 
 interface OffcanvasContextValue {
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const OffcanvasContext =
-  React.createContext<OffcanvasContextValue | null>(null)
+const OffcanvasContext = React.createContext<OffcanvasContextValue | null>(
+  null,
+);
 
 function Offcanvas({
   open,
@@ -18,48 +19,50 @@ function Offcanvas({
   onOpenChange,
   children,
 }: {
-  open?: boolean
-  defaultOpen?: boolean
-  onOpenChange?: (open: boolean) => void
-  children: React.ReactNode
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  children: React.ReactNode;
 }) {
-  const isControlled = open !== undefined
-  const [internalOpen, setInternalOpen] = React.useState(defaultOpen)
-  const currentOpen = isControlled ? open : internalOpen
+  const isControlled = open !== undefined;
+  const [internalOpen, setInternalOpen] = React.useState(defaultOpen);
+  const currentOpen = isControlled ? open : internalOpen;
 
-  const setOpen = React.useCallback<React.Dispatch<React.SetStateAction<boolean>>>(
+  const setOpen = React.useCallback<
+    React.Dispatch<React.SetStateAction<boolean>>
+  >(
     (value) => {
-      const next = typeof value === "function" ? value(currentOpen) : value
+      const next = typeof value === "function" ? value(currentOpen) : value;
 
       if (!isControlled) {
-        setInternalOpen(next)
+        setInternalOpen(next);
       }
 
-      onOpenChange?.(next)
+      onOpenChange?.(next);
     },
-    [currentOpen, isControlled, onOpenChange]
-  )
+    [currentOpen, isControlled, onOpenChange],
+  );
 
   React.useEffect(() => {
     if (!currentOpen) {
-      return
+      return;
     }
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setOpen(false)
+        setOpen(false);
       }
-    }
+    };
 
-    document.addEventListener("keydown", handleEscape)
-    return () => document.removeEventListener("keydown", handleEscape)
-  }, [currentOpen, setOpen])
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [currentOpen, setOpen]);
 
   return (
     <OffcanvasContext.Provider value={{ open: currentOpen, setOpen }}>
       {children}
     </OffcanvasContext.Provider>
-  )
+  );
 }
 
 function OffcanvasTrigger({
@@ -68,28 +71,31 @@ function OffcanvasTrigger({
   onClick,
   ...props
 }: React.ComponentProps<"button">) {
-  const context = React.useContext(OffcanvasContext)
+  const context = React.useContext(OffcanvasContext);
 
   if (!context) {
-    throw new Error("OffcanvasTrigger must be used within Offcanvas")
+    throw new Error("OffcanvasTrigger must be used within Offcanvas");
   }
 
   return (
     <button
       type="button"
-      className={cn("btn btn-primary", className)}
+      className={cn(
+        "inline-flex items-center justify-center gap-2 cursor-pointer font-medium transition-colors outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-black text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 px-5 py-2.5 text-sm",
+        className,
+      )}
       onClick={(event) => {
-        onClick?.(event)
+        onClick?.(event);
 
         if (!event.defaultPrevented) {
-          context.setOpen(true)
+          context.setOpen(true);
         }
       }}
       {...props}
     >
       {children}
     </button>
-  )
+  );
 }
 
 function OffcanvasContent({
@@ -98,60 +104,68 @@ function OffcanvasContent({
   children,
   ...props
 }: React.ComponentProps<"div"> & {
-  placement?: "start" | "end" | "top" | "bottom"
+  placement?: "start" | "end" | "top" | "bottom";
 }) {
-  const context = React.useContext(OffcanvasContext)
+  const context = React.useContext(OffcanvasContext);
 
   if (!context) {
-    throw new Error("OffcanvasContent must be used within Offcanvas")
+    throw new Error("OffcanvasContent must be used within Offcanvas");
   }
 
   if (!context.open || typeof document === "undefined") {
-    return null
+    return null;
   }
 
   return createPortal(
     <>
       <div
-        className="offcanvas-backdrop fade show"
+        className="fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity"
         onClick={() => context.setOpen(false)}
       />
       <div
         className={cn(
-          "offcanvas show",
-          `offcanvas-${placement}`,
-          className
+          "fixed z-50 bg-white shadow-xl transition-transform duration-300 h-full w-64 overflow-y-auto",
+          placement === "start" && "left-0 top-0 -translate-x-full",
+          placement === "end" && "right-0 top-0 translate-x-full",
+          placement === "top" && "top-0 left-0 -translate-y-full w-full h-auto",
+          placement === "bottom" &&
+            "bottom-0 left-0 translate-y-full w-full h-auto",
+          context.open && "translate-x-0 translate-y-0",
+          className,
         )}
         tabIndex={-1}
-        style={{ visibility: "visible" }}
         {...props}
       >
         {children}
       </div>
     </>,
-    document.body
-  )
+    document.body,
+  );
 }
 
-function OffcanvasHeader({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
-  return <div className={cn("offcanvas-header", className)} {...props} />
+function OffcanvasHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      className={cn(
+        "flex items-center justify-between border-b border-gray-300 px-4 py-4",
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
-function OffcanvasBody({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
-  return <div className={cn("offcanvas-body", className)} {...props} />
+function OffcanvasBody({ className, ...props }: React.ComponentProps<"div">) {
+  return <div className={cn("px-4 py-4", className)} {...props} />;
 }
 
-function OffcanvasTitle({
-  className,
-  ...props
-}: React.ComponentProps<"h5">) {
-  return <h5 className={cn("offcanvas-title", className)} {...props} />
+function OffcanvasTitle({ className, ...props }: React.ComponentProps<"h5">) {
+  return (
+    <h5
+      className={cn("text-lg font-semibold text-black", className)}
+      {...props}
+    />
+  );
 }
 
 function OffcanvasClose({
@@ -159,27 +173,30 @@ function OffcanvasClose({
   onClick,
   ...props
 }: React.ComponentProps<"button">) {
-  const context = React.useContext(OffcanvasContext)
+  const context = React.useContext(OffcanvasContext);
 
   if (!context) {
-    throw new Error("OffcanvasClose must be used within Offcanvas")
+    throw new Error("OffcanvasClose must be used within Offcanvas");
   }
 
   return (
     <button
       type="button"
-      className={cn("btn-close", className)}
+      className={cn(
+        "inline-flex items-center justify-center rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 p-2",
+        className,
+      )}
       aria-label="Close"
       onClick={(event) => {
-        onClick?.(event)
+        onClick?.(event);
 
         if (!event.defaultPrevented) {
-          context.setOpen(false)
+          context.setOpen(false);
         }
       }}
       {...props}
     />
-  )
+  );
 }
 
 export {
@@ -190,4 +207,4 @@ export {
   OffcanvasHeader,
   OffcanvasTitle,
   OffcanvasTrigger,
-}
+};

@@ -1,32 +1,36 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
-import "./fhnw-bootstrap.css"
+import { cn } from "@/lib/utils";
+import "./fhnw-components.css";
 
 const Progress = React.forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithoutRef<"div">
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("progress", className)} {...props} />
-))
+  <div
+    ref={ref}
+    className={cn("h-2 w-full bg-gray-200 rounded overflow-hidden", className)}
+    {...props}
+  />
+));
 
-Progress.displayName = "Progress"
+Progress.displayName = "Progress";
 
 const ProgressBar = React.forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithoutRef<"div"> & {
-    value: number
-    striped?: boolean
-    animated?: boolean
+    value: number;
+    striped?: boolean;
+    animated?: boolean;
   }
 >(({ className, value, striped, animated, children, style, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "progress-bar",
-      striped && "progress-bar-striped",
-      animated && "progress-bar-animated",
-      className
+      "bg-black text-white text-xs flex items-center justify-center transition-all duration-300",
+      striped && "fhnw-progress-striped",
+      animated && "fhnw-progress-animated",
+      className,
     )}
     role="progressbar"
     aria-valuenow={value}
@@ -37,8 +41,8 @@ const ProgressBar = React.forwardRef<
   >
     {children ?? `${value}%`}
   </div>
-))
+));
 
-ProgressBar.displayName = "ProgressBar"
+ProgressBar.displayName = "ProgressBar";
 
-export { Progress, ProgressBar }
+export { Progress, ProgressBar };

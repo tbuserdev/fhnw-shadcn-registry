@@ -1,0 +1,76 @@
+/**
+ * FHNW Component CSS
+ * Contains keyframes and pseudo-element styles for components that Tailwind cannot express.
+ * No Bootstrap dependencies - FHNW-specific CSS only.
+ */
+
+/* Spinner Animation */
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner-grow {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Progress Bar Animation */
+@keyframes progress-bar-stripes {
+  0% {
+    background-position-x: 1.5rem;
+  }
+}
+
+/* Tooltip Arrow */
+.fhnw-tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Popover Arrow */
+.fhnw-popover-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Offcanvas Slide Animation */
+.fhnw-offcanvas {
+  transition: transform 300ms ease-in-out;
+}
+
+.fhnw-offcanvas[data-placement="end"] {
+  transform: translateX(100%);
+}
+
+.fhnw-offcanvas[data-placement="end"][data-open="true"],
+.fhnw-offcanvas[data-placement="start"][data-open="true"] {
+  transform: translateX(0);
+}
+
+.fhnw-offcanvas[data-placement="start"] {
+  transform: translateX(-100%);
+}
+
+/* Teaser Hover Scale Effect */
+.fhnw-teaser-image {
+  overflow: hidden;
+}
+
+.fhnw-teaser-image img {
+  transition: transform 300ms ease-in-out;
+}
+
+.fhnw-teaser:hover .fhnw-teaser-image img {
+  transform: scale(1.05);
+}

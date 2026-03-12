@@ -1,7 +1,7 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
-import "./fhnw-bootstrap.css"
+import { cn } from "@/lib/utils";
+import "./fhnw-components.css";
 
 function BackToTop({
   className,
@@ -10,39 +10,43 @@ function BackToTop({
   style,
   ...props
 }: React.ComponentProps<"a"> & {
-  threshold?: number
+  threshold?: number;
 }) {
-  const [visible, setVisible] = React.useState(false)
+  const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > threshold)
-    }
+      setVisible(window.scrollY > threshold);
+    };
 
-    handleScroll()
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [threshold])
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [threshold]);
 
   return (
     <a
       href="#top"
       aria-label="Back to top"
-      className={cn("back-to-top", className)}
-      style={{ opacity: visible ? 0.4 : 0, ...style }}
+      className={cn(
+        "fixed bottom-6 right-6 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black text-white hover:bg-gray-900 transition-opacity focus:outline-none focus:ring-2 focus:ring-blue-400",
+        !visible && "pointer-events-none",
+        className,
+      )}
+      style={{ opacity: visible ? 1 : 0, ...style }}
       onClick={(event) => {
-        onClick?.(event)
+        onClick?.(event);
 
         if (event.defaultPrevented) {
-          return
+          return;
         }
 
-        event.preventDefault()
-        window.scrollTo({ top: 0, behavior: "smooth" })
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }}
       {...props}
     />
-  )
+  );
 }
 
-export { BackToTop }
+export { BackToTop };

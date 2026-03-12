@@ -1,57 +1,71 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
-import "./fhnw-bootstrap.css"
+import { cn } from "@/lib/utils";
+import "./fhnw-components.css";
 
 const Pagination = React.forwardRef<
   HTMLElement,
   React.ComponentPropsWithoutRef<"nav">
 >(({ className, ...props }, ref) => (
   <nav ref={ref} className={cn(className)} {...props} />
-))
+));
 
-Pagination.displayName = "Pagination"
+Pagination.displayName = "Pagination";
 
 const PaginationContent = React.forwardRef<
   HTMLUListElement,
   React.ComponentPropsWithoutRef<"ul">
 >(({ className, ...props }, ref) => (
-  <ul ref={ref} className={cn("pagination", className)} {...props} />
-))
+  <ul ref={ref} className={cn("flex gap-1", className)} {...props} />
+));
 
-PaginationContent.displayName = "PaginationContent"
+PaginationContent.displayName = "PaginationContent";
 
 const PaginationItem = React.forwardRef<
   HTMLLIElement,
   React.ComponentPropsWithoutRef<"li">
 >(({ className, ...props }, ref) => (
-  <li ref={ref} className={cn("page-item", className)} {...props} />
-))
+  <li ref={ref} className={cn("", className)} {...props} />
+));
 
-PaginationItem.displayName = "PaginationItem"
+PaginationItem.displayName = "PaginationItem";
 
 const PaginationLink = React.forwardRef<
   HTMLAnchorElement,
   React.ComponentPropsWithoutRef<"a"> & {
-    isActive?: boolean
+    isActive?: boolean;
   }
 >(({ className, isActive, ...props }, ref) => (
   <a
     ref={ref}
     aria-current={isActive ? "page" : undefined}
-    className={cn("page-link", className)}
+    className={cn(
+      "inline-flex items-center justify-center rounded border border-gray-300 px-3 py-1 text-sm transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400",
+      isActive && "border-black bg-black text-white",
+      className,
+    )}
     {...props}
   />
-))
+));
 
-PaginationLink.displayName = "PaginationLink"
+PaginationLink.displayName = "PaginationLink";
 
-function PaginationPrevious(props: React.ComponentProps<typeof PaginationLink>) {
-  return <PaginationLink aria-label="Previous page" {...props}>Previous</PaginationLink>
+function PaginationPrevious(
+  props: React.ComponentProps<typeof PaginationLink>,
+) {
+  return (
+    <PaginationLink aria-label="Previous page" {...props}>
+      Previous
+    </PaginationLink>
+  );
 }
 
 function PaginationNext(props: React.ComponentProps<typeof PaginationLink>) {
-  return <PaginationLink aria-label="Next page" {...props}>Next</PaginationLink>
+  return (
+    <PaginationLink aria-label="Next page" {...props}>
+      Next
+    </PaginationLink>
+  );
 }
 
 export {
@@ -61,4 +75,4 @@ export {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-}
+};

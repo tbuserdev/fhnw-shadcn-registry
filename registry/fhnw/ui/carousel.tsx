@@ -1,7 +1,7 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
-import "./fhnw-bootstrap.css"
+import { cn } from "@/lib/utils";
+import "./fhnw-components.css";
 
 function Carousel({
   className,
@@ -13,39 +13,42 @@ function Carousel({
   showControls = true,
   ...props
 }: React.ComponentProps<"div"> & {
-  autoPlay?: boolean
-  interval?: number
-  fade?: boolean
-  showIndicators?: boolean
-  showControls?: boolean
+  autoPlay?: boolean;
+  interval?: number;
+  fade?: boolean;
+  showIndicators?: boolean;
+  showControls?: boolean;
 }) {
-  const items = React.Children.toArray(children)
-  const [activeIndex, setActiveIndex] = React.useState(0)
+  const items = React.Children.toArray(children);
+  const [activeIndex, setActiveIndex] = React.useState(0);
 
   React.useEffect(() => {
     if (!autoPlay || items.length <= 1) {
-      return
+      return;
     }
 
     const id = window.setInterval(() => {
-      setActiveIndex((index) => (index + 1) % items.length)
-    }, interval)
+      setActiveIndex((index) => (index + 1) % items.length);
+    }, interval);
 
-    return () => window.clearInterval(id)
-  }, [autoPlay, interval, items.length])
+    return () => window.clearInterval(id);
+  }, [autoPlay, interval, items.length]);
 
   return (
     <div
-      className={cn("carousel slide", fade && "carousel-fade", className)}
+      className={cn("relative w-full overflow-hidden rounded", className)}
       {...props}
     >
       {showIndicators && items.length > 1 ? (
-        <div className="carousel-indicators">
+        <div className="absolute bottom-5 left-0 right-0 z-20 flex justify-center gap-2 px-4">
           {items.map((_, index) => (
             <button
               key={index}
               type="button"
-              className={cn(index === activeIndex && "active")}
+              className={cn(
+                "h-3 w-3 rounded-full transition-all duration-300",
+                index === activeIndex ? "bg-black" : "bg-gray-400",
+              )}
               aria-current={index === activeIndex}
               aria-label={`Slide ${index + 1}`}
               onClick={() => setActiveIndex(index)}
@@ -53,40 +56,68 @@ function Carousel({
           ))}
         </div>
       ) : null}
-      <div className="carousel-inner">
+      <div className="relative w-full h-full">
         {items.map((child, index) =>
           React.isValidElement(child)
             ? React.cloneElement(child, {
                 active: index === activeIndex,
                 key: child.key ?? index,
               } as { active: boolean; key: React.Key })
-            : child
+            : child,
         )}
       </div>
       {showControls && items.length > 1 ? (
         <>
           <button
-            className="carousel-control-prev"
+            className="absolute left-4 top-1/2 z-10 -translate-y-1/2 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black text-white hover:bg-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400"
             type="button"
+            aria-label="Previous slide"
             onClick={() =>
-              setActiveIndex((index) => (index - 1 + items.length) % items.length)
+              setActiveIndex(
+                (index) => (index - 1 + items.length) % items.length,
+              )
             }
           >
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
-            <span className="visually-hidden">Previous</span>
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
           </button>
           <button
-            className="carousel-control-next"
+            className="absolute right-4 top-1/2 z-10 -translate-y-1/2 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black text-white hover:bg-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400"
             type="button"
-            onClick={() => setActiveIndex((index) => (index + 1) % items.length)}
+            aria-label="Next slide"
+            onClick={() =>
+              setActiveIndex((index) => (index + 1) % items.length)
+            }
           >
-            <span className="carousel-control-next-icon" aria-hidden="true" />
-            <span className="visually-hidden">Next</span>
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
           </button>
         </>
       ) : null}
     </div>
-  )
+  );
 }
 
 function CarouselItem({
@@ -94,16 +125,30 @@ function CarouselItem({
   active,
   ...props
 }: React.ComponentProps<"div"> & {
-  active?: boolean
+  active?: boolean;
 }) {
-  return <div className={cn("carousel-item", active && "active", className)} {...props} />
+  return (
+    <div
+      className={cn(
+        "absolute inset-0 transition-opacity duration-500",
+        active ? "opacity-100 z-10" : "opacity-0 z-0",
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
-function CarouselCaption({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
-  return <div className={cn("carousel-caption", className)} {...props} />
+function CarouselCaption({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      className={cn(
+        "absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 text-white",
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
-export { Carousel, CarouselCaption, CarouselItem }
+export { Carousel, CarouselCaption, CarouselItem };

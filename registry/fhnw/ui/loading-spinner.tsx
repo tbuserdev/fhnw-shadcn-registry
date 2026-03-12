@@ -1,34 +1,37 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
-import "./fhnw-bootstrap.css"
+import { cn } from "@/lib/utils";
+import "./fhnw-components.css";
 
 function LoadingSpinner({
   className,
   variant = "default",
   ...props
 }: React.ComponentProps<"div"> & {
-  variant?: "default" | "white"
+  variant?: "default" | "white";
 }) {
   return (
     <div
       className={cn(
-        "d-flex justify-content-center align-content-center p-7",
+        "flex items-center justify-center p-7",
         variant === "white" && "bg-black bg-opacity-100",
-        className
+        className,
       )}
       {...props}
     >
       <div
-        className={cn("spinner-border", variant === "white" && "text-white")}
+        className={cn(
+          "inline-block h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-black",
+          variant === "white" && "border-gray-700 border-t-white",
+        )}
         role="status"
       >
-        <span className="visually-hidden">Loading...</span>
+        <span className="sr-only">Loading...</span>
       </div>
     </div>
-  )
+  );
 }
 
-const Spinner = LoadingSpinner
+const Spinner = LoadingSpinner;
 
-export { LoadingSpinner, Spinner }
+export { LoadingSpinner, Spinner };
