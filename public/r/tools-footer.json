@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tools-footer",
+  "title": "Tools-Footer",
+  "description": "FHNW internal tools footer block.",
+  "files": [
+    {
+      "path": "registry/fhnw/blocks/tools-footer/tools-footer.tsx",
+      "content": "function ToolsFooter() {\n  return (\n    <footer className=\"border border-border bg-white\">\n      <div className=\"border-t-4 border-[#fde703] px-6 py-5\">\n        <div className=\"flex flex-col items-center justify-center gap-2 text-sm text-black sm:flex-row\">\n          <a className=\"underline\" href=\"https://www.fhnw.ch\" target=\"_blank\" rel=\"noreferrer\">\n            www.fhnw.ch\n          </a>\n          <span className=\"hidden sm:inline\">|</span>\n          <a className=\"underline\" href=\"#\">\n            Impressum\n          </a>\n          <span className=\"hidden sm:inline\">|</span>\n          <a className=\"underline\" href=\"#\">\n            Datenschutz\n          </a>\n        </div>\n      </div>\n    </footer>\n  )\n}\n\nexport { ToolsFooter }\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

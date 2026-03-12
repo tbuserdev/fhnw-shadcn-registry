@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "webdienst-footer",
+  "title": "Webdienst-Footer",
+  "description": "FHNW microsite footer block.",
+  "registryDependencies": [
+    "icons"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/blocks/webdienst-footer/webdienst-footer.tsx",
+      "content": "import { SocialIconLink, SocialIcons } from \"@/registry/fhnw/ui/icons\"\n\nfunction WebdienstFooter() {\n  return (\n    <footer className=\"border border-border bg-white\">\n      <div className=\"grid gap-6 p-6 lg:grid-cols-3\">\n        <div>\n          <h3 className=\"text-lg font-semibold text-black\">Kontakt</h3>\n          <p className=\"mt-3 text-sm leading-6 text-foreground/75\">\n            Fachhochschule Nordwestschweiz FHNW\n            <br />\n            Institute\n            <br />\n            Division\n            <br />\n            Street\n            <br />\n            Zip Location\n          </p>\n          <p className=\"mt-3 text-sm\">\n            E-Mail: <a className=\"underline\" href=\"mailto:webmaster@fhnw.ch\">webmaster@fhnw.ch</a>\n          </p>\n          <SocialIcons className=\"mt-4\">\n            <SocialIconLink href=\"#\" name=\"linkedin\" size=\"sm\" aria-label=\"LinkedIn\" />\n            <SocialIconLink href=\"#\" name=\"instagram\" size=\"sm\" aria-label=\"Instagram\" />\n            <SocialIconLink href=\"#\" name=\"youtube\" size=\"sm\" aria-label=\"YouTube\" />\n          </SocialIcons>\n        </div>\n\n        <div>\n          <h3 className=\"text-lg font-semibold text-black\">Über diese Website</h3>\n          <p className=\"mt-3 text-sm leading-6 text-foreground/75\">\n            Der Web-Styleguide der FHNW bildet das verbindliche Standard-Design\n            der FHNW-Webdienste ab und erlaubt, dieses in Eigenentwicklungen auf\n            Basis eines konsistenten Frameworks zu nutzen.\n          </p>\n        </div>\n\n        <div>\n          <h3 className=\"text-lg font-semibold text-black\">Quicklinks</h3>\n          <div className=\"mt-3 flex flex-col gap-2 text-sm\">\n            <a className=\"underline\" href=\"#\">Webdienste</a>\n            <a className=\"underline\" href=\"#\">Tools und Services</a>\n            <a className=\"underline\" href=\"#\">Quicklinks</a>\n          </div>\n        </div>\n      </div>\n\n      <div className=\"border-t border-border px-6 py-4\">\n        <div className=\"flex flex-col items-center justify-center gap-2 text-sm text-black sm:flex-row\">\n          <a className=\"underline\" href=\"https://www.fhnw.ch\" target=\"_blank\" rel=\"noreferrer\">\n            www.fhnw.ch\n          </a>\n          <span className=\"hidden sm:inline\">|</span>\n          <a className=\"underline\" href=\"#\">Impressum</a>\n          <span className=\"hidden sm:inline\">|</span>\n          <a className=\"underline\" href=\"#\">Datenschutz</a>\n        </div>\n      </div>\n    </footer>\n  )\n}\n\nexport { WebdienstFooter }\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

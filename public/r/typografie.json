@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typografie",
+  "title": "Typografie",
+  "description": "FHNW typography showcase block.",
+  "registryDependencies": [
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/blocks/typografie/typografie.tsx",
+      "content": "import { Badge } from \"@/registry/fhnw/ui/badge\"\n\nfunction Typografie() {\n  return (\n    <section className=\"border border-border bg-white\">\n      <div className=\"border-b border-border bg-[#f7f7f5] p-6\">\n        <Badge variant=\"secondary\">Typografie</Badge>\n        <h2 className=\"mt-4 text-3xl font-semibold text-black\">Inter als Standardschrift</h2>\n        <p className=\"mt-3 max-w-3xl text-sm leading-7 text-foreground/75\">\n          Für Online-Kanäle der FHNW kommt durchgängig Inter zum Einsatz.\n          Punktuell wird Spectral für akzentuierte Inhalte wie Testimonial-Elemente verwendet.\n        </p>\n      </div>\n\n      <div className=\"grid gap-8 p-6 lg:grid-cols-[1.1fr_0.9fr]\">\n        <div className=\"space-y-5\">\n          <div className=\"space-y-2\">\n            <h1>Pure H1 tag without class</h1>\n            <h2>Heading H2</h2>\n            <h3>Heading H3</h3>\n            <h4>Heading H4</h4>\n          </div>\n\n          <div className=\"space-y-3 border-t border-border pt-5\">\n            <p className=\"text-3xl font-semibold text-black\">h1. Bootstrap heading with paragraph tag</p>\n            <p className=\"text-2xl font-semibold text-black\">h2. Bootstrap heading with paragraph tag</p>\n            <p className=\"lead text-black\">\n              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis\n              eos, commodi autem porro, ex quo odio illo quas nisi ratione.\n            </p>\n            <p className=\"text-sm leading-7 text-foreground/75\">\n              Standard Paragraph für den Fliesstext mit ruhiger Zeilenhöhe und\n              deutlicher Hierarchie zu Titeln und Leadtext.\n            </p>\n          </div>\n        </div>\n\n        <aside className=\"space-y-5 border border-border p-5\">\n          <div>\n            <h3 className=\"text-xl font-semibold text-black\">Listen</h3>\n            <ul className=\"mt-3 list-disc space-y-2 pl-5 text-sm text-black\">\n              <li>Unordered list für Inhalte mit mittlerer Gewichtung</li>\n              <li>Leadtext mit erhöhter Aufmerksamkeit</li>\n              <li>Klare Abstufung von H1 bis H6</li>\n            </ul>\n          </div>\n\n          <div className=\"border-t border-border pt-5\">\n            <p className=\"text-sm font-semibold uppercase tracking-[0.18em] text-foreground/55\">\n              Spectral Akzent\n            </p>\n            <p className=\"mt-3 font-['Spectral'] text-2xl italic text-black\">\n              “Punktuell, etwa für das Testimonial-Element, kommt Spectral zum Einsatz.”\n            </p>\n          </div>\n        </aside>\n      </div>\n    </section>\n  )\n}\n\nexport { Typografie }\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

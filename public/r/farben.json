@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "farben",
+  "title": "Farben",
+  "description": "FHNW color palette showcase block.",
+  "registryDependencies": [
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/blocks/farben/farben.tsx",
+      "content": "import { Badge } from \"@/registry/fhnw/ui/badge\"\n\nconst primaryPalette = [\n  { label: \"Primary\", value: \"#000000\", textClassName: \"text-white\" },\n  { label: \"Secondary\", value: \"#fde703\", textClassName: \"text-black\" },\n  { label: \"White\", value: \"#ffffff\", textClassName: \"text-black\" },\n]\n\nconst secondaryPalette = [\n  { label: \"Danger\", value: \"#df305b\", textClassName: \"text-white\" },\n  { label: \"Success\", value: \"#198754\", textClassName: \"text-white\" },\n  { label: \"Warning\", value: \"#ffc107\", textClassName: \"text-black\" },\n  { label: \"Info\", value: \"#dee2e6\", textClassName: \"text-black\" },\n  { label: \"Light\", value: \"#f1f1ee\", textClassName: \"text-black\" },\n]\n\nfunction PaletteRow({\n  title,\n  items,\n}: {\n  title: string\n  items: Array<{ label: string; value: string; textClassName: string }>\n}) {\n  return (\n    <div className=\"space-y-4\">\n      <h3 className=\"text-xl font-semibold text-black\">{title}</h3>\n      <div className=\"grid gap-4 sm:grid-cols-2 xl:grid-cols-3\">\n        {items.map((item) => (\n          <article key={item.label} className=\"border border-border bg-white\">\n            <div\n              className={`flex min-h-32 items-end justify-between p-4 ${item.textClassName}`}\n              style={{ backgroundColor: item.value }}\n            >\n              <span className=\"text-lg font-semibold\">{item.label}</span>\n              <span className=\"text-sm\">{item.value}</span>\n            </div>\n          </article>\n        ))}\n      </div>\n    </div>\n  )\n}\n\nfunction Farben() {\n  return (\n    <section className=\"border border-border bg-white\">\n      <div className=\"border-b border-border bg-[#f7f7f5] p-6\">\n        <Badge variant=\"secondary\">Farben</Badge>\n        <h2 className=\"mt-4 text-3xl font-semibold text-black\">Primär- und Sekundärfarben</h2>\n        <p className=\"mt-3 max-w-3xl text-sm leading-7 text-foreground/75\">\n          Nachfolgend finden Sie die nutzbaren Primär- und Sekundärfarben aus\n          dem FHNW-Styleguide. Sie bilden die Grundlage für Buttons,\n          Hervorhebungen, Statusanzeigen und Flächen.\n        </p>\n      </div>\n\n      <div className=\"space-y-8 p-6\">\n        <PaletteRow title=\"Primäre Farbpalette\" items={primaryPalette} />\n        <PaletteRow title=\"Sekundäre Farbpalette\" items={secondaryPalette} />\n      </div>\n    </section>\n  )\n}\n\nexport { Farben }\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

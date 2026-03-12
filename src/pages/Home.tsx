@@ -1,9 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
 
-import { CampusFaq } from "@/registry/fhnw/blocks/campus-faq/campus-faq";
-import { ProgrammeShowcase } from "@/registry/fhnw/blocks/programme-showcase/programme-showcase";
-import { StudyForm } from "@/registry/fhnw/blocks/study-form/study-form";
+import { Basiselemente } from "@/registry/fhnw/blocks/basiselemente/basiselemente";
+import { CookieHinweis } from "@/registry/fhnw/blocks/cookie-hinweis/cookie-hinweis";
+import { Farben } from "@/registry/fhnw/blocks/farben/farben";
+import { Formulare } from "@/registry/fhnw/blocks/formulare/formulare";
+import { FormularValidierung } from "@/registry/fhnw/blocks/formular-validierung/formular-validierung";
+import { ToolsFooter } from "@/registry/fhnw/blocks/tools-footer/tools-footer";
+import { ToolsHeader } from "@/registry/fhnw/blocks/tools-header/tools-header";
+import { Typografie } from "@/registry/fhnw/blocks/typografie/typografie";
+import { WebdienstFooter } from "@/registry/fhnw/blocks/webdienst-footer/webdienst-footer";
+import { WebdienstHeader } from "@/registry/fhnw/blocks/webdienst-header/webdienst-header";
+import { WortBildmarken } from "@/registry/fhnw/blocks/wort-bildmarken/wort-bildmarken";
 import { SiteHeader } from "@/registry/fhnw/ui/site-header";
 
 const registryItems = [
@@ -39,9 +47,90 @@ const registryItems = [
   "tooltip",
   "videos",
   "site-header",
-  "study-form",
-  "programme-showcase",
-  "campus-faq",
+  "basiselemente",
+  "cookie-hinweis",
+  "farben",
+  "formulare",
+  "formular-validierung",
+  "wort-bildmarken",
+  "tools-footer",
+  "tools-header",
+  "typografie",
+  "webdienst-footer",
+  "webdienst-header",
+];
+
+const blockPreviews = [
+  {
+    title: "Basiselemente",
+    packageName: "@fhnw/basiselemente",
+    jsonName: "basiselemente",
+    component: <Basiselemente />,
+  },
+  {
+    title: "Cookie-Hinweis",
+    packageName: "@fhnw/cookie-hinweis",
+    jsonName: "cookie-hinweis",
+    component: <CookieHinweis />,
+  },
+  {
+    title: "Farben",
+    packageName: "@fhnw/farben",
+    jsonName: "farben",
+    component: <Farben />,
+  },
+  {
+    title: "Formulare",
+    packageName: "@fhnw/formulare",
+    jsonName: "formulare",
+    component: <Formulare />,
+  },
+  {
+    title: "Formular-Validierung",
+    packageName: "@fhnw/formular-validierung",
+    jsonName: "formular-validierung",
+    component: <FormularValidierung />,
+  },
+  {
+    title: "Wort-/Bildmarken",
+    packageName: "@fhnw/wort-bildmarken",
+    jsonName: "wort-bildmarken",
+    component: <WortBildmarken />,
+  },
+  {
+    title: "Tools-Header",
+    packageName: "@fhnw/tools-header",
+    jsonName: "tools-header",
+    component: <ToolsHeader />,
+    bodyClassName: "p-0",
+  },
+  {
+    title: "Tools-Footer",
+    packageName: "@fhnw/tools-footer",
+    jsonName: "tools-footer",
+    component: <ToolsFooter />,
+    bodyClassName: "p-0",
+  },
+  {
+    title: "Typografie",
+    packageName: "@fhnw/typografie",
+    jsonName: "typografie",
+    component: <Typografie />,
+  },
+  {
+    title: "Webdienst-Header",
+    packageName: "@fhnw/webdienst-header",
+    jsonName: "webdienst-header",
+    component: <WebdienstHeader />,
+    bodyClassName: "p-0",
+  },
+  {
+    title: "Webdienst-Footer",
+    packageName: "@fhnw/webdienst-footer",
+    jsonName: "webdienst-footer",
+    component: <WebdienstFooter />,
+    bodyClassName: "p-0",
+  },
 ];
 
 export function Home() {
@@ -151,7 +240,8 @@ export function Home() {
                 </p>
                 <pre className="overflow-x-auto rounded-lg bg-slate-900 p-5 text-sm leading-6 text-slate-50 shadow-inner">
                   <code>{`pnpm dlx shadcn@latest add @fhnw/button
-pnpm dlx shadcn@latest add @fhnw/study-form`}</code>
+pnpm dlx shadcn@latest add @fhnw/webdienst-header
+pnpm dlx shadcn@latest add @fhnw/farben`}</code>
                 </pre>
               </div>
             </div>
@@ -186,112 +276,39 @@ pnpm dlx shadcn@latest add @fhnw/study-form`}</code>
               Live Vorschau
             </h2>
             <p className="max-w-3xl text-lg text-slate-600">
-              Drei installierbare Blöcke sowie der geteilte Header-Component,
-              gerendert aus denselben Registry-Quelldateien, die auch das JSON
-              generieren.
+              Elf installierbare Basiselement-Blöcke, gerendert direkt aus
+              denselben Registry-Quelldateien, die auch das statische JSON
+              erzeugen.
             </p>
           </div>
 
-          <div className="grid gap-8">
-            <article className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-md">
+          <div className="grid gap-8 xl:grid-cols-2">
+            {blockPreviews.map((preview) => (
+              <article
+                key={preview.jsonName}
+                className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-md"
+              >
               <div className="border-b border-black/5 bg-slate-50/50 px-6 py-4">
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <h3 className="text-xl font-bold text-slate-900">
-                      Site Header
+                      {preview.title}
                     </h3>
                     <p className="text-sm font-mono text-slate-500">
-                      @fhnw/site-header
+                      {preview.packageName}
                     </p>
                   </div>
                   <a
-                    href={withBase("r/site-header.json")}
+                    href={withBase(`r/${preview.jsonName}.json`)}
                     className="inline-flex items-center gap-1 text-sm font-semibold text-slate-600 transition hover:text-secondary"
                   >
                     JSON <ArrowUpRightIcon className="size-4" />
                   </a>
                 </div>
               </div>
-              <div className="p-0 sm:p-6">
-                <div className="overflow-hidden sm:rounded-xl sm:border border-border">
-                  <SiteHeader registryBasePath={baseUrl} />
-                </div>
-              </div>
+              <div className={preview.bodyClassName ?? "p-6"}>{preview.component}</div>
             </article>
-
-            <div className="grid gap-8 xl:grid-cols-2">
-              <article className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-md">
-                <div className="border-b border-black/5 bg-slate-50/50 px-6 py-4">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-900">
-                        Study Form
-                      </h3>
-                      <p className="text-sm font-mono text-slate-500">
-                        @fhnw/study-form
-                      </p>
-                    </div>
-                    <a
-                      href={withBase("r/study-form.json")}
-                      className="inline-flex items-center gap-1 text-sm font-semibold text-slate-600 transition hover:text-secondary"
-                    >
-                      JSON <ArrowUpRightIcon className="size-4" />
-                    </a>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <StudyForm />
-                </div>
-              </article>
-
-              <article className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-md">
-                <div className="border-b border-black/5 bg-slate-50/50 px-6 py-4">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-900">
-                        Programme Showcase
-                      </h3>
-                      <p className="text-sm font-mono text-slate-500">
-                        @fhnw/programme-showcase
-                      </p>
-                    </div>
-                    <a
-                      href={withBase("r/programme-showcase.json")}
-                      className="inline-flex items-center gap-1 text-sm font-semibold text-slate-600 transition hover:text-secondary"
-                    >
-                      JSON <ArrowUpRightIcon className="size-4" />
-                    </a>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <ProgrammeShowcase />
-                </div>
-              </article>
-            </div>
-
-            <article className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-md">
-              <div className="border-b border-black/5 bg-slate-50/50 px-6 py-4">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900">
-                      Campus FAQ
-                    </h3>
-                    <p className="text-sm font-mono text-slate-500">
-                      @fhnw/campus-faq
-                    </p>
-                  </div>
-                  <a
-                    href={withBase("r/campus-faq.json")}
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-slate-600 transition hover:text-secondary"
-                  >
-                    JSON <ArrowUpRightIcon className="size-4" />
-                  </a>
-                </div>
-              </div>
-              <div className="p-6">
-                <CampusFaq />
-              </div>
-            </article>
+            ))}
           </div>
         </section>
       </div>

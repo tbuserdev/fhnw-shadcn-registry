@@ -36,6 +36,7 @@ function Carousel({
 
   return (
     <div
+      data-carousel-fade={fade ? "true" : "false"}
       className={cn("relative w-full overflow-hidden", className)}
       {...props}
     >

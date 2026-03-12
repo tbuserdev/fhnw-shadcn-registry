@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "wort-bildmarken",
+  "title": "Wort-/Bildmarken",
+  "description": "FHNW branding and logo guidance block.",
+  "registryDependencies": [
+    "button",
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/blocks/wort-bildmarken/wort-bildmarken.tsx",
+      "content": "import { Badge } from \"@/registry/fhnw/ui/badge\"\nimport { Button } from \"@/registry/fhnw/ui/button\"\n\nfunction LogoLockup({\n  title,\n  subtitle,\n}: {\n  title: string\n  subtitle: string\n}) {\n  return (\n    <div className=\"border border-border bg-white p-5\">\n      <div className=\"inline-flex items-stretch border border-black\">\n        <span className=\"bg-black px-4 py-3 text-lg font-bold tracking-[0.25em] text-white\">\n          FHNW\n        </span>\n        <div className=\"flex flex-col justify-center px-4 py-3\">\n          <span className=\"text-sm font-semibold text-black\">{title}</span>\n          <span className=\"text-sm text-foreground/70\">{subtitle}</span>\n        </div>\n      </div>\n    </div>\n  )\n}\n\nfunction WortBildmarken() {\n  return (\n    <section className=\"border border-border bg-white\">\n      <div className=\"border-b border-border bg-[#f7f7f5] p-6\">\n        <Badge variant=\"secondary\">Wort-/Bildmarken</Badge>\n        <h2 className=\"mt-4 text-3xl font-semibold text-black\">Logo-Einsatz im digitalen Auftritt</h2>\n        <p className=\"mt-3 max-w-3xl text-sm leading-7 text-foreground/75\">\n          Die Wort-/Bildmarken der FHNW werden im Standard-Design über den\n          vorgegebenen Header integriert. Im Custom-Design muss die vollständige\n          Wort-/Bildmarke links oben platziert werden.\n        </p>\n      </div>\n\n      <div className=\"grid gap-6 p-6 lg:grid-cols-[1fr_1fr]\">\n        <div className=\"space-y-4\">\n          <LogoLockup title=\"Fachhochschule Nordwestschweiz\" subtitle=\"Standard-Design\" />\n          <LogoLockup title=\"Hochschule für Gestaltung und Kunst\" subtitle=\"Custom-Design\" />\n        </div>\n\n        <div className=\"space-y-4 border border-border p-5\">\n          <h3 className=\"text-xl font-semibold text-black\">Hinweise aus dem Styleguide</h3>\n          <ul className=\"space-y-3 text-sm leading-6 text-foreground/75\">\n            <li>Standard-Plattformen nutzen die Wort-/Bildmarke im Webdienst- oder Tools-Header.</li>\n            <li>Custom-Designs integrieren die vollständige Marke links oben.</li>\n            <li>Verfügbare Formate im Branding-Portal: PNG, SVG, JPG und EPS.</li>\n            <li>Die Nutzung folgt den Vorgaben des CD-Manuals der FHNW.</li>\n          </ul>\n          <div className=\"pt-2\">\n            <Button variant=\"outline\">Branding-Portal</Button>\n          </div>\n        </div>\n      </div>\n    </section>\n  )\n}\n\nexport { WortBildmarken }\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "webdienst-header",
+  "title": "Webdienst-Header",
+  "description": "FHNW microsite header block.",
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/blocks/webdienst-header/webdienst-header.tsx",
+      "content": "import { buttonVariants } from \"@/registry/fhnw/ui/button\"\nimport { cn } from \"@/lib/utils\"\n\nconst navLinks = [\"Start\", \"Webdienste\", \"Corporate Design\", \"Download\"]\nconst dropdownLinks = [\"First level 1\", \"First level 2\", \"First level 3\", \"Second level 1\"]\n\nfunction WebdienstHeader() {\n  return (\n    <section className=\"border border-border bg-white\">\n      <header className=\"border-b border-border\">\n        <div className=\"flex flex-col gap-4 border-b border-border px-5 py-4 lg:flex-row lg:items-center lg:justify-between\">\n          <div className=\"flex items-center gap-3\">\n            <span className=\"bg-black px-3 py-2 text-sm font-semibold tracking-[0.28em] text-white\">\n              FHNW\n            </span>\n            <p className=\"text-sm text-foreground/75\">Webdienst-Header</p>\n          </div>\n\n          <div className=\"flex flex-wrap items-center gap-2\">\n            <a className={cn(buttonVariants({ variant: \"secondary\", size: \"sm\" }), \"no-underline\")} href=\"#\">\n              DE\n            </a>\n            <a className={cn(buttonVariants({ variant: \"outline\", size: \"sm\" }), \"no-underline\")} href=\"#\">\n              EN\n            </a>\n            <a className={cn(buttonVariants({ variant: \"ghost\", size: \"sm\" }), \"no-underline\")} href=\"#\">\n              Suchen\n            </a>\n          </div>\n        </div>\n\n        <div className=\"bg-[#fde703] px-5 py-3\">\n          <p className=\"text-base font-semibold text-black\">FHNW Bootstrap V5 Styleguide</p>\n        </div>\n\n        <div className=\"grid gap-4 px-5 py-4 lg:grid-cols-[0.9fr_1.1fr]\">\n          <nav className=\"flex flex-wrap gap-2\" aria-label=\"Primary\">\n            {navLinks.map((link, index) => (\n              <a\n                key={link}\n                href=\"#\"\n                className={cn(\n                  buttonVariants({ variant: index === 0 ? \"secondary\" : \"ghost\", size: \"sm\" }),\n                  \"no-underline\",\n                )}\n              >\n                {link}\n              </a>\n            ))}\n          </nav>\n\n          <div className=\"border border-border bg-[#f7f7f5] p-4\">\n            <p className=\"text-sm font-semibold text-black\">Mehrstufige Navigation</p>\n            <div className=\"mt-3 grid gap-3 sm:grid-cols-2\">\n              {dropdownLinks.map((link) => (\n                <div key={link} className=\"border border-border bg-white px-3 py-2 text-sm text-black\">\n                  {link}\n                </div>\n              ))}\n            </div>\n          </div>\n        </div>\n      </header>\n    </section>\n  )\n}\n\nexport { WebdienstHeader }\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

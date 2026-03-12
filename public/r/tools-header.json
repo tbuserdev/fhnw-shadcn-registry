@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tools-header",
+  "title": "Tools-Header",
+  "description": "FHNW internal tools header block.",
+  "registryDependencies": [
+    "button",
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/blocks/tools-header/tools-header.tsx",
+      "content": "import { Badge } from \"@/registry/fhnw/ui/badge\"\nimport { buttonVariants } from \"@/registry/fhnw/ui/button\"\nimport { cn } from \"@/lib/utils\"\n\nconst mainLinks = [\"Dashboard\", \"Studierende\", \"Lehre\", \"Services\"]\nconst megaLinks = [\"Topic I\", \"Topic II\", \"Topic III\"]\n\nfunction ToolsHeader() {\n  return (\n    <section className=\"border border-border bg-white\">\n      <header className=\"border-b border-border\">\n        <div className=\"flex flex-col gap-4 border-b border-border bg-[#f7f7f5] px-5 py-4 lg:flex-row lg:items-center lg:justify-between\">\n          <div className=\"flex flex-wrap items-center gap-3\">\n            <span className=\"bg-black px-3 py-2 text-sm font-semibold tracking-[0.28em] text-white\">\n              FHNW\n            </span>\n            <div>\n              <p className=\"text-sm font-semibold text-black\">Corporate IT Services</p>\n              <p className=\"text-sm text-foreground/65\">Tools &amp; Services</p>\n            </div>\n          </div>\n          <div className=\"flex flex-wrap items-center gap-2\">\n            <Badge variant=\"secondary\">DE</Badge>\n            <a className={cn(buttonVariants({ variant: \"outline\", size: \"sm\" }), \"no-underline\")} href=\"#\">\n              EN\n            </a>\n            <a className={cn(buttonVariants({ variant: \"ghost\", size: \"sm\" }), \"no-underline\")} href=\"#\">\n              Profil\n            </a>\n          </div>\n        </div>\n\n        <div className=\"px-5 py-4\">\n          <div className=\"mb-4 border-b border-black pb-3\">\n            <p className=\"text-xs font-semibold uppercase tracking-[0.22em] text-foreground/60\">Metatitle</p>\n            <h2 className=\"mt-2 text-3xl font-semibold text-black\">Tools-Header</h2>\n          </div>\n\n          <div className=\"grid gap-4 lg:grid-cols-[0.9fr_1.1fr]\">\n            <nav className=\"flex flex-wrap gap-2\" aria-label=\"Main navigation\">\n              {mainLinks.map((link, index) => (\n                <a\n                  key={link}\n                  href=\"#\"\n                  className={cn(\n                    buttonVariants({ variant: index === 0 ? \"secondary\" : \"ghost\", size: \"sm\" }),\n                    \"no-underline\",\n                  )}\n                >\n                  {link}\n                </a>\n              ))}\n            </nav>\n\n            <div className=\"border border-border bg-[#f7f7f5] p-4\">\n              <p className=\"text-sm font-semibold text-black\">Megamenu</p>\n              <div className=\"mt-3 grid gap-3 sm:grid-cols-3\">\n                {megaLinks.map((link) => (\n                  <div key={link} className=\"border border-border bg-white p-3 text-sm text-black\">\n                    {link}\n                  </div>\n                ))}\n              </div>\n            </div>\n          </div>\n        </div>\n      </header>\n    </section>\n  )\n}\n\nexport { ToolsHeader }\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

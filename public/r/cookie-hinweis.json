@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cookie-hinweis",
+  "title": "Cookie-Hinweis",
+  "description": "FHNW cookie and privacy notice block.",
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/blocks/cookie-hinweis/cookie-hinweis.tsx",
+      "content": "import { Button } from \"@/registry/fhnw/ui/button\"\n\nfunction CookieHinweis() {\n  return (\n    <section className=\"border border-border bg-white\">\n      <div className=\"border-b border-border p-6\">\n        <h2 className=\"text-3xl font-semibold text-black\">Cookie-Hinweis</h2>\n        <p className=\"mt-3 max-w-3xl text-sm leading-7 text-foreground/75\">\n          Mustertext und Consent-Banner gemäss FHNW-Styleguide mit Verweis auf\n          Datenschutz und einem klaren Bestätigungs-CTA.\n        </p>\n      </div>\n\n      <div className=\"grid gap-6 p-6 lg:grid-cols-[1.3fr_0.7fr]\">\n        <div className=\"flex min-h-56 flex-col justify-end border border-border bg-[#f7f7f5] p-5\">\n          <div\n            className=\"border border-black bg-[#fde703] p-4 shadow-[8px_8px_0_0_rgba(0,0,0,0.08)]\"\n            role=\"alert\"\n            aria-label=\"Datenschutz und Cookies\"\n          >\n            <p className=\"text-sm leading-6 text-black\">\n              Indem Sie diesen Hinweis schliessen oder mit dem Besuch der Seite\n              fortfahren, akzeptieren Sie die Verwendung von Cookies. Weitere\n              Informationen dazu finden Sie unter Datenschutz.\n            </p>\n            <div className=\"mt-4 flex flex-col gap-3 sm:flex-row sm:justify-end\">\n              <Button variant=\"outline\">Datenschutz</Button>\n              <Button variant=\"secondary\">Ok</Button>\n            </div>\n          </div>\n        </div>\n\n        <aside className=\"space-y-4 border border-border p-5\">\n          <h3 className=\"text-lg font-semibold text-black\">Datenschutz FHNW</h3>\n          <p className=\"text-sm leading-6 text-foreground/75\">\n            Der Banner bleibt bewusst knapp: Er erklärt die Cookie-Nutzung,\n            verlinkt auf die Datenschutzseite und bietet eine eindeutige\n            Bestätigung zum Schliessen des Hinweises.\n          </p>\n          <ul className=\"space-y-2 text-sm text-black\">\n            <li>Positionierung als auffälliges, aber kompaktes Banner</li>\n            <li>Schwarzer Text auf sekundärem FHNW-Gelb</li>\n            <li>CTA mit kurzer Beschriftung: “Ok”</li>\n          </ul>\n        </aside>\n      </div>\n    </section>\n  )\n}\n\nexport { CookieHinweis }\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

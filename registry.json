@@ -511,49 +511,150 @@
       ]
     },
     {
-      "name": "study-form",
+      "name": "basiselemente",
       "type": "registry:block",
-      "title": "Study Form",
-      "description": "FHNW application form block.",
+      "title": "Basiselemente",
+      "description": "FHNW overview block for the basic styleguide elements.",
+      "registryDependencies": ["button", "badge"],
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/basiselemente/basiselemente.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cookie-hinweis",
+      "type": "registry:block",
+      "title": "Cookie-Hinweis",
+      "description": "FHNW cookie and privacy notice block.",
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/cookie-hinweis/cookie-hinweis.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "farben",
+      "type": "registry:block",
+      "title": "Farben",
+      "description": "FHNW color palette showcase block.",
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/farben/farben.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "formulare",
+      "type": "registry:block",
+      "title": "Formulare",
+      "description": "FHNW form patterns block.",
       "registryDependencies": [
         "button",
         "input",
         "textarea",
         "select",
         "checkbox",
-        "radio-group",
-        "card",
-        "badge"
+        "radio-group"
       ],
       "files": [
         {
-          "path": "registry/fhnw/blocks/study-form/study-form.tsx",
+          "path": "registry/fhnw/blocks/formulare/formulare.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
-      "name": "programme-showcase",
+      "name": "formular-validierung",
       "type": "registry:block",
-      "title": "Programme Showcase",
-      "description": "FHNW programme teaser block.",
-      "registryDependencies": ["button", "card", "badge", "alert"],
+      "title": "Formular-Validierung",
+      "description": "FHNW validated form states block.",
+      "registryDependencies": ["button", "input", "checkbox"],
       "files": [
         {
-          "path": "registry/fhnw/blocks/programme-showcase/programme-showcase.tsx",
+          "path": "registry/fhnw/blocks/formular-validierung/formular-validierung.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
-      "name": "campus-faq",
+      "name": "wort-bildmarken",
       "type": "registry:block",
-      "title": "Campus FAQ",
-      "description": "FHNW FAQ and campus details block.",
-      "registryDependencies": ["tabs", "accordion", "alert", "badge", "button"],
+      "title": "Wort-/Bildmarken",
+      "description": "FHNW branding and logo guidance block.",
+      "registryDependencies": ["button", "badge"],
       "files": [
         {
-          "path": "registry/fhnw/blocks/campus-faq/campus-faq.tsx",
+          "path": "registry/fhnw/blocks/wort-bildmarken/wort-bildmarken.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tools-footer",
+      "type": "registry:block",
+      "title": "Tools-Footer",
+      "description": "FHNW internal tools footer block.",
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/tools-footer/tools-footer.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tools-header",
+      "type": "registry:block",
+      "title": "Tools-Header",
+      "description": "FHNW internal tools header block.",
+      "registryDependencies": ["button", "badge"],
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/tools-header/tools-header.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "typografie",
+      "type": "registry:block",
+      "title": "Typografie",
+      "description": "FHNW typography showcase block.",
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/typografie/typografie.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "webdienst-footer",
+      "type": "registry:block",
+      "title": "Webdienst-Footer",
+      "description": "FHNW microsite footer block.",
+      "registryDependencies": ["icons"],
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/webdienst-footer/webdienst-footer.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "webdienst-header",
+      "type": "registry:block",
+      "title": "Webdienst-Header",
+      "description": "FHNW microsite header block.",
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/webdienst-header/webdienst-header.tsx",
           "type": "registry:component"
         }
       ]
