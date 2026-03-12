@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "teaser",
+  "title": "Teaser",
+  "description": "FHNW teaser card.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/teaser.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\nfunction Teaser({\n  className,\n  title,\n  subtitle,\n  description,\n  href = \"#\",\n  imageSrc,\n  imageAlt = \"\",\n  columns = 3,\n  ...props\n}: Omit<React.ComponentProps<\"a\">, \"title\"> & {\n  title: React.ReactNode\n  subtitle?: React.ReactNode\n  description?: React.ReactNode\n  imageSrc?: string\n  imageAlt?: string\n  columns?: 3 | 4\n}) {\n  return (\n    <div\n      className={cn(\n        \"teaser card mb-4 col-xs-12 col-sm-6 p-0\",\n        columns === 3 ? \"col-lg-4\" : \"col-lg-3\",\n        className\n      )}\n    >\n      <a href={href} title=\"\" {...props}>\n        <div className=\"card-body\">\n          {imageSrc ? (\n            <div className=\"position-relative\">\n              <img\n                src={imageSrc}\n                alt={imageAlt}\n                aria-hidden=\"true\"\n                className=\"img-fluid w-100\"\n              />\n            </div>\n          ) : null}\n          {subtitle ? <small className=\"d-inline-block mb-2\">{subtitle}</small> : null}\n          <h2 className=\"card-title no-line\">{title}</h2>\n          {description ? <p>{description}</p> : null}\n        </div>\n      </a>\n    </div>\n  )\n}\n\nexport { Teaser }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,53 +1,114 @@
-import { Tabs as TabsPrimitive } from "@base-ui/react/tabs"
+import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import "./fhnw-bootstrap.css"
 
 function Tabs({
   className,
-  orientation = "horizontal",
+  value,
+  defaultValue,
+  onValueChange,
   ...props
-}: TabsPrimitive.Root.Props) {
+}: React.ComponentProps<"div"> & {
+  value?: string
+  defaultValue?: string
+  onValueChange?: (value: string) => void
+}) {
+  const isControlled = value !== undefined
+  const [internalValue, setInternalValue] = React.useState(defaultValue ?? "")
+  const currentValue = isControlled ? value ?? "" : internalValue
+
+  const setValue = React.useCallback(
+    (next: string) => {
+      if (!isControlled) {
+        setInternalValue(next)
+      }
+
+      onValueChange?.(next)
+    },
+    [isControlled, onValueChange]
+  )
+
   return (
-    <TabsPrimitive.Root
-      data-slot="tabs"
-      data-orientation={orientation}
-      className={cn("flex gap-6 data-[orientation=horizontal]:flex-col", className)}
-      {...props}
-    />
+    <TabsContext.Provider value={{ value: currentValue, setValue }}>
+      <div data-slot="tabs" className={cn(className)} {...props} />
+    </TabsContext.Provider>
   )
 }
 
-function TabsList({ className, ...props }: TabsPrimitive.List.Props) {
+interface TabsContextValue {
+  value: string
+  setValue: (value: string) => void
+}
+
+const TabsContext = React.createContext<TabsContextValue | null>(null)
+
+function TabsList({ className, ...props }: React.ComponentProps<"ul">) {
   return (
-    <TabsPrimitive.List
+    <ul
       data-slot="tabs-list"
-      className={cn(
-        "inline-flex flex-wrap gap-2 border-b-2 border-border pb-2",
-        className
-      )}
+      className={cn("nav nav-tabs", className)}
+      role="tablist"
       {...props}
     />
   )
 }
 
-function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
+function TabsTrigger({
+  className,
+  value,
+  children,
+  ...props
+}: React.ComponentProps<"button"> & {
+  value: string
+}) {
+  const context = React.useContext(TabsContext)
+
+  if (!context) {
+    throw new Error("TabsTrigger must be used within Tabs")
+  }
+
+  const isActive = context.value === value
+
   return (
-    <TabsPrimitive.Tab
-      data-slot="tabs-trigger"
-      className={cn(
-        "border-2 border-transparent px-4 py-2 text-sm font-semibold text-foreground/70 outline-none transition-colors hover:text-black focus-visible:border-black focus-visible:ring-4 focus-visible:ring-ring/25 data-active:border-black data-active:bg-secondary data-active:text-black",
-        className
-      )}
-      {...props}
-    />
+    <li className="nav-item" role="presentation">
+      <button
+        data-slot="tabs-trigger"
+        className={cn("nav-link", isActive && "active", className)}
+        type="button"
+        role="tab"
+        aria-selected={isActive}
+        onClick={() => context.setValue(value)}
+        {...props}
+      >
+        {children}
+      </button>
+    </li>
   )
 }
 
-function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {
+function TabsContent({
+  className,
+  value,
+  ...props
+}: React.ComponentProps<"div"> & {
+  value: string
+}) {
+  const context = React.useContext(TabsContext)
+
+  if (!context) {
+    throw new Error("TabsContent must be used within Tabs")
+  }
+
   return (
-    <TabsPrimitive.Panel
+    <div
       data-slot="tabs-content"
-      className={cn("text-sm/7 outline-none", className)}
+      className={cn(
+        "tab-pane fade",
+        context.value === value && "show active",
+        className
+      )}
+      role="tabpanel"
       {...props}
     />
   )

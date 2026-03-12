@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "loading-spinner",
+  "title": "Loading Spinner",
+  "description": "FHNW loading spinner.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/loading-spinner.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\nfunction LoadingSpinner({\n  className,\n  variant = \"default\",\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  variant?: \"default\" | \"white\"\n}) {\n  return (\n    <div\n      className={cn(\n        \"d-flex justify-content-center align-content-center p-7\",\n        variant === \"white\" && \"bg-black bg-opacity-100\",\n        className\n      )}\n      {...props}\n    >\n      <div\n        className={cn(\"spinner-border\", variant === \"white\" && \"text-white\")}\n        role=\"status\"\n      >\n        <span className=\"visually-hidden\">Loading...</span>\n      </div>\n    </div>\n  )\n}\n\nconst Spinner = LoadingSpinner\n\nexport { LoadingSpinner, Spinner }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

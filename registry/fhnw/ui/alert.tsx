@@ -2,12 +2,21 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+import "./fhnw-bootstrap.css"
 
-const alertVariants = cva("border-l-[6px] px-5 py-4 text-sm", {
+const alertVariants = cva("alert", {
   variants: {
     variant: {
-      default: "border-primary bg-muted text-black",
-      destructive: "border-destructive bg-[#f8d7da] text-[#58151c]",
+      default: "alert-primary",
+      primary: "alert-primary",
+      secondary: "alert-secondary",
+      success: "alert-success",
+      destructive: "alert-danger",
+      danger: "alert-danger",
+      warning: "alert-warning",
+      info: "alert-info",
+      light: "alert-light",
+      dark: "alert-dark",
     },
   },
   defaultVariants: {
@@ -34,7 +43,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-title"
-      className={cn("font-semibold text-black", className)}
+      className={cn("alert-heading", className)}
       {...props}
     />
   )
@@ -47,7 +56,7 @@ function AlertDescription({
   return (
     <div
       data-slot="alert-description"
-      className={cn("mt-1 text-sm/6", className)}
+      className={cn(className)}
       {...props}
     />
   )

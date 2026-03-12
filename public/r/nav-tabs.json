@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "nav-tabs",
+  "title": "Nav-Tabs",
+  "description": "FHNW navigation tabs alias.",
+  "registryDependencies": [
+    "tabs"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/nav-tabs.tsx",
+      "content": "export { Tabs as NavTabs, TabsContent, TabsList, TabsTrigger } from \"./tabs\"\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -10,6 +10,12 @@
       "description": "FHNW tokens and base styles for shadcn Base UI projects.",
       "dependencies": ["@fontsource/inter", "tw-animate-css"],
       "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/fhnw-bootstrap.css",
+          "type": "registry:style"
+        }
+      ],
       "cssVars": {
         "light": {
           "background": "#ffffff",
@@ -80,6 +86,19 @@
           "color": "#000000"
         }
       }
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "FHNW breadcrumb navigation.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "utils",
@@ -223,7 +242,6 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "FHNW tab navigation.",
-      "dependencies": ["@base-ui/react"],
       "registryDependencies": ["style-fhnw"],
       "files": [
         {
@@ -237,11 +255,244 @@
       "type": "registry:ui",
       "title": "Accordion",
       "description": "FHNW accordion.",
-      "dependencies": ["@base-ui/react", "@phosphor-icons/react"],
       "registryDependencies": ["style-fhnw"],
       "files": [
         {
           "path": "registry/fhnw/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "back-to-top",
+      "type": "registry:ui",
+      "title": "Back-To-Top",
+      "description": "FHNW floating back-to-top control.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/back-to-top.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "FHNW carousel with Bootstrap styling.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collapse",
+      "type": "registry:ui",
+      "title": "Collapse",
+      "description": "FHNW collapse region.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/collapse.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown",
+      "type": "registry:ui",
+      "title": "Dropdown",
+      "description": "FHNW dropdown menu.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/dropdown.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icons",
+      "type": "registry:ui",
+      "title": "Icons",
+      "description": "FHNW social icon classes.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/icons.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "images",
+      "type": "registry:ui",
+      "title": "Images",
+      "description": "FHNW responsive image helpers.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/images.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "loading-spinner",
+      "type": "registry:ui",
+      "title": "Loading Spinner",
+      "description": "FHNW loading spinner.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/loading-spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "modal",
+      "type": "registry:ui",
+      "title": "Modal",
+      "description": "FHNW modal dialog.",
+      "registryDependencies": ["style-fhnw", "button"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/modal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "nav-tabs",
+      "type": "registry:ui",
+      "title": "Nav-Tabs",
+      "description": "FHNW navigation tabs alias.",
+      "registryDependencies": ["tabs"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/nav-tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "offcanvas",
+      "type": "registry:ui",
+      "title": "Offcanvas",
+      "description": "FHNW offcanvas drawer.",
+      "registryDependencies": ["style-fhnw", "button"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/offcanvas.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "FHNW pagination controls.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "FHNW popover surface.",
+      "registryDependencies": ["style-fhnw", "button"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progressbar",
+      "type": "registry:ui",
+      "title": "Progressbar",
+      "description": "FHNW progress bar.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/progressbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tables",
+      "type": "registry:ui",
+      "title": "Tables",
+      "description": "FHNW table styles.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/tables.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "teaser",
+      "type": "registry:ui",
+      "title": "Teaser",
+      "description": "FHNW teaser card.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/teaser.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "testimonial",
+      "type": "registry:ui",
+      "title": "Testimonial",
+      "description": "FHNW testimonial layout.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/testimonial.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "FHNW tooltip overlay.",
+      "registryDependencies": ["style-fhnw", "button"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "videos",
+      "type": "registry:ui",
+      "title": "Videos",
+      "description": "FHNW responsive video embeds.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/videos.tsx",
           "type": "registry:ui"
         }
       ]

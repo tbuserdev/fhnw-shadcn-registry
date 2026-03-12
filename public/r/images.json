@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "images",
+  "title": "Images",
+  "description": "FHNW responsive image helpers.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/images.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\nfunction Image({\n  className,\n  responsive = true,\n  ...props\n}: React.ComponentProps<\"img\"> & {\n  responsive?: boolean\n}) {\n  return (\n    <img\n      className={cn(responsive && \"img-fluid\", className)}\n      {...props}\n    />\n  )\n}\n\nconst Figure = React.forwardRef<\n  HTMLElement,\n  React.ComponentPropsWithoutRef<\"figure\">\n>(({ className, ...props }, ref) => (\n  <figure ref={ref} className={cn(\"figure\", className)} {...props} />\n))\n\nFigure.displayName = \"Figure\"\n\nconst FigureImage = React.forwardRef<\n  HTMLImageElement,\n  React.ComponentPropsWithoutRef<\"img\">\n>(({ className, ...props }, ref) => (\n  <img ref={ref} className={cn(\"figure-img img-fluid\", className)} {...props} />\n))\n\nFigureImage.displayName = \"FigureImage\"\n\nconst FigureCaption = React.forwardRef<\n  HTMLElement,\n  React.ComponentPropsWithoutRef<\"figcaption\">\n>(({ className, ...props }, ref) => (\n  <figcaption ref={ref} className={cn(\"figure-caption\", className)} {...props} />\n))\n\nFigureCaption.displayName = \"FigureCaption\"\n\nexport { Figure, FigureCaption, FigureImage, Image }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

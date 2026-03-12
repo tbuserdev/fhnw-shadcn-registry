@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progressbar",
+  "title": "Progressbar",
+  "description": "FHNW progress bar.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/progressbar.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\nconst Progress = React.forwardRef<\n  HTMLDivElement,\n  React.ComponentPropsWithoutRef<\"div\">\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"progress\", className)} {...props} />\n))\n\nProgress.displayName = \"Progress\"\n\nconst ProgressBar = React.forwardRef<\n  HTMLDivElement,\n  React.ComponentPropsWithoutRef<\"div\"> & {\n    value: number\n    striped?: boolean\n    animated?: boolean\n  }\n>(({ className, value, striped, animated, children, style, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      \"progress-bar\",\n      striped && \"progress-bar-striped\",\n      animated && \"progress-bar-animated\",\n      className\n    )}\n    role=\"progressbar\"\n    aria-valuenow={value}\n    aria-valuemin={0}\n    aria-valuemax={100}\n    style={{ width: `${value}%`, ...style }}\n    {...props}\n  >\n    {children ?? `${value}%`}\n  </div>\n))\n\nProgressBar.displayName = \"ProgressBar\"\n\nexport { Progress, ProgressBar }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

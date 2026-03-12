@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "carousel",
+  "title": "Carousel",
+  "description": "FHNW carousel with Bootstrap styling.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/carousel.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\nfunction Carousel({\n  className,\n  children,\n  autoPlay = false,\n  interval = 10000,\n  fade = true,\n  showIndicators = true,\n  showControls = true,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  autoPlay?: boolean\n  interval?: number\n  fade?: boolean\n  showIndicators?: boolean\n  showControls?: boolean\n}) {\n  const items = React.Children.toArray(children)\n  const [activeIndex, setActiveIndex] = React.useState(0)\n\n  React.useEffect(() => {\n    if (!autoPlay || items.length <= 1) {\n      return\n    }\n\n    const id = window.setInterval(() => {\n      setActiveIndex((index) => (index + 1) % items.length)\n    }, interval)\n\n    return () => window.clearInterval(id)\n  }, [autoPlay, interval, items.length])\n\n  return (\n    <div\n      className={cn(\"carousel slide\", fade && \"carousel-fade\", className)}\n      {...props}\n    >\n      {showIndicators && items.length > 1 ? (\n        <div className=\"carousel-indicators\">\n          {items.map((_, index) => (\n            <button\n              key={index}\n              type=\"button\"\n              className={cn(index === activeIndex && \"active\")}\n              aria-current={index === activeIndex}\n              aria-label={`Slide ${index + 1}`}\n              onClick={() => setActiveIndex(index)}\n            />\n          ))}\n        </div>\n      ) : null}\n      <div className=\"carousel-inner\">\n        {items.map((child, index) =>\n          React.isValidElement(child)\n            ? React.cloneElement(child, {\n                active: index === activeIndex,\n                key: child.key ?? index,\n              } as { active: boolean; key: React.Key })\n            : child\n        )}\n      </div>\n      {showControls && items.length > 1 ? (\n        <>\n          <button\n            className=\"carousel-control-prev\"\n            type=\"button\"\n            onClick={() =>\n              setActiveIndex((index) => (index - 1 + items.length) % items.length)\n            }\n          >\n            <span className=\"carousel-control-prev-icon\" aria-hidden=\"true\" />\n            <span className=\"visually-hidden\">Previous</span>\n          </button>\n          <button\n            className=\"carousel-control-next\"\n            type=\"button\"\n            onClick={() => setActiveIndex((index) => (index + 1) % items.length)}\n          >\n            <span className=\"carousel-control-next-icon\" aria-hidden=\"true\" />\n            <span className=\"visually-hidden\">Next</span>\n          </button>\n        </>\n      ) : null}\n    </div>\n  )\n}\n\nfunction CarouselItem({\n  className,\n  active,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  active?: boolean\n}) {\n  return <div className={cn(\"carousel-item\", active && \"active\", className)} {...props} />\n}\n\nfunction CarouselCaption({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return <div className={cn(\"carousel-caption\", className)} {...props} />\n}\n\nexport { Carousel, CarouselCaption, CarouselItem }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

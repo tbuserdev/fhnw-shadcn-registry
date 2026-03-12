@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip",
+  "title": "Tooltip",
+  "description": "FHNW tooltip overlay.",
+  "registryDependencies": [
+    "style-fhnw",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/tooltip.tsx",
+      "content": "import * as React from \"react\"\nimport { createPortal } from \"react-dom\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\ntype TooltipPlacement = \"top\" | \"right\" | \"bottom\" | \"left\"\n\nfunction getTooltipPosition(\n  rect: DOMRect,\n  placement: TooltipPlacement\n): React.CSSProperties {\n  const gap = 8\n\n  switch (placement) {\n    case \"top\":\n      return { left: rect.left + rect.width / 2, top: rect.top - gap, transform: \"translate(-50%, -100%)\" }\n    case \"right\":\n      return { left: rect.right + gap, top: rect.top + rect.height / 2, transform: \"translateY(-50%)\" }\n    case \"left\":\n      return { left: rect.left - gap, top: rect.top + rect.height / 2, transform: \"translate(-100%, -50%)\" }\n    default:\n      return { left: rect.left + rect.width / 2, top: rect.bottom + gap, transform: \"translateX(-50%)\" }\n  }\n}\n\nfunction Tooltip({\n  className,\n  content,\n  placement = \"top\",\n  children,\n}: React.ComponentProps<\"span\"> & {\n  content: React.ReactNode\n  placement?: TooltipPlacement\n}) {\n  const triggerRef = React.useRef<HTMLSpanElement>(null)\n  const [open, setOpen] = React.useState(false)\n  const [style, setStyle] = React.useState<React.CSSProperties>()\n\n  React.useEffect(() => {\n    if (!open || !triggerRef.current) {\n      return\n    }\n\n    const update = () => {\n      const rect = triggerRef.current?.getBoundingClientRect()\n\n      if (rect) {\n        setStyle({\n          position: \"fixed\",\n          zIndex: 1080,\n          ...getTooltipPosition(rect, placement),\n        })\n      }\n    }\n\n    update()\n    window.addEventListener(\"resize\", update)\n    window.addEventListener(\"scroll\", update, true)\n\n    return () => {\n      window.removeEventListener(\"resize\", update)\n      window.removeEventListener(\"scroll\", update, true)\n    }\n  }, [open, placement])\n\n  return (\n    <>\n      <span\n        ref={triggerRef}\n        className={cn(\"d-inline-flex\", className)}\n        onMouseEnter={() => setOpen(true)}\n        onMouseLeave={() => setOpen(false)}\n        onFocus={() => setOpen(true)}\n        onBlur={() => setOpen(false)}\n      >\n        {children}\n      </span>\n      {open && typeof document !== \"undefined\"\n        ? createPortal(\n            <div\n              className={cn(`tooltip bs-tooltip-${placement}`, \"show\")}\n              role=\"tooltip\"\n              style={style}\n            >\n              <div className=\"tooltip-arrow\" />\n              <div className=\"tooltip-inner\">{content}</div>\n            </div>,\n            document.body\n          )\n        : null}\n    </>\n  )\n}\n\nexport { Tooltip }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

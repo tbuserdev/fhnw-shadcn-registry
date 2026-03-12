@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "title": "Pagination",
+  "description": "FHNW pagination controls.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/pagination.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\nconst Pagination = React.forwardRef<\n  HTMLElement,\n  React.ComponentPropsWithoutRef<\"nav\">\n>(({ className, ...props }, ref) => (\n  <nav ref={ref} className={cn(className)} {...props} />\n))\n\nPagination.displayName = \"Pagination\"\n\nconst PaginationContent = React.forwardRef<\n  HTMLUListElement,\n  React.ComponentPropsWithoutRef<\"ul\">\n>(({ className, ...props }, ref) => (\n  <ul ref={ref} className={cn(\"pagination\", className)} {...props} />\n))\n\nPaginationContent.displayName = \"PaginationContent\"\n\nconst PaginationItem = React.forwardRef<\n  HTMLLIElement,\n  React.ComponentPropsWithoutRef<\"li\">\n>(({ className, ...props }, ref) => (\n  <li ref={ref} className={cn(\"page-item\", className)} {...props} />\n))\n\nPaginationItem.displayName = \"PaginationItem\"\n\nconst PaginationLink = React.forwardRef<\n  HTMLAnchorElement,\n  React.ComponentPropsWithoutRef<\"a\"> & {\n    isActive?: boolean\n  }\n>(({ className, isActive, ...props }, ref) => (\n  <a\n    ref={ref}\n    aria-current={isActive ? \"page\" : undefined}\n    className={cn(\"page-link\", className)}\n    {...props}\n  />\n))\n\nPaginationLink.displayName = \"PaginationLink\"\n\nfunction PaginationPrevious(props: React.ComponentProps<typeof PaginationLink>) {\n  return <PaginationLink aria-label=\"Previous page\" {...props}>Previous</PaginationLink>\n}\n\nfunction PaginationNext(props: React.ComponentProps<typeof PaginationLink>) {\n  return <PaginationLink aria-label=\"Next page\" {...props}>Next</PaginationLink>\n}\n\nexport {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n  PaginationNext,\n  PaginationPrevious,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

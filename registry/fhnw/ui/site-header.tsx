@@ -1,19 +1,20 @@
-import { Badge } from "@/registry/fhnw/ui/badge"
-import { buttonVariants } from "@/registry/fhnw/ui/button"
-import { cn } from "@/lib/utils"
+import { Badge } from "@/registry/fhnw/ui/badge";
+import { buttonVariants } from "@/registry/fhnw/ui/button";
+import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "#install", label: "Install" },
-  { href: "#previews", label: "Previews" },
+  { href: "/#install", label: "Installation" },
+  { href: "/#previews", label: "Vorschau" },
+  { href: "/docs", label: "Komponenten" },
   { href: "/r/registry.json", label: "Registry JSON" },
-]
+];
 
 function joinRegistryPath(basePath: string | undefined, path: string) {
   if (!basePath || basePath === "/") {
-    return path
+    return path;
   }
 
-  return `${basePath.replace(/\/+$/, "")}/${path.replace(/^\/+/, "")}`
+  return `${basePath.replace(/\/+$/, "")}/${path.replace(/^\/+/, "")}`;
 }
 
 function SiteHeader({ registryBasePath }: { registryBasePath?: string }) {
@@ -26,7 +27,7 @@ function SiteHeader({ registryBasePath }: { registryBasePath?: string }) {
           </span>
           <Badge variant="secondary">Base UI Registry</Badge>
           <span className="text-sm text-foreground/70">
-            Light-theme primitives for Vite and shadcn.
+            Light-Theme Primitives für Vite und shadcn.
           </span>
         </div>
 
@@ -41,7 +42,7 @@ function SiteHeader({ registryBasePath }: { registryBasePath?: string }) {
               }
               className={cn(
                 buttonVariants({ variant: "ghost", size: "sm" }),
-                "no-underline"
+                "no-underline",
               )}
             >
               {link.label}
@@ -51,7 +52,7 @@ function SiteHeader({ registryBasePath }: { registryBasePath?: string }) {
             href={joinRegistryPath(registryBasePath, "/r/style-fhnw.json")}
             className={cn(
               buttonVariants({ variant: "secondary", size: "sm" }),
-              "no-underline"
+              "no-underline",
             )}
           >
             Theme JSON
@@ -59,7 +60,7 @@ function SiteHeader({ registryBasePath }: { registryBasePath?: string }) {
         </nav>
       </div>
     </header>
-  )
+  );
 }
 
-export { SiteHeader }
+export { SiteHeader };

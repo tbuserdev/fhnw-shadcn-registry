@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "videos",
+  "title": "Videos",
+  "description": "FHNW responsive video embeds.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/videos.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\nfunction VideoEmbed({\n  className,\n  ratio = \"16x9\",\n  ...props\n}: React.ComponentProps<\"iframe\"> & {\n  ratio?: \"16x9\" | \"4x3\" | \"1x1\" | \"21x9\"\n}) {\n  return (\n    <div className={cn(`ratio ratio-${ratio}`, className)}>\n      <iframe {...props} />\n    </div>\n  )\n}\n\nexport { VideoEmbed }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icons",
+  "title": "Icons",
+  "description": "FHNW social icon classes.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/icons.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\ntype IconName =\n  | \"youtube\"\n  | \"facebook\"\n  | \"flickr\"\n  | \"bluesky\"\n  | \"instagram\"\n  | \"issuu\"\n  | \"itunes\"\n  | \"linkedin\"\n  | \"vimeo\"\n  | \"tiktok\"\n  | \"snapchat\"\n  | \"xing\"\n  | \"switch\"\n\ntype IconSize = \"sm\" | \"md\"\n\nfunction Icon({\n  className,\n  name,\n  size = \"md\",\n  ...props\n}: Omit<React.ComponentPropsWithoutRef<\"span\">, \"children\"> & {\n  name: IconName\n  size?: IconSize\n}) {\n  return (\n    <span\n      aria-hidden=\"true\"\n      className={cn(`icon__${name}--${size}`, className)}\n      {...props}\n    />\n  )\n}\n\nfunction SocialIcons({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<\"ul\">) {\n  return (\n    <ul className={cn(\"social__icons\", className)} {...props}>\n      {children}\n    </ul>\n  )\n}\n\nfunction SocialIconLink({\n  className,\n  name,\n  size = \"sm\",\n  ...props\n}: React.ComponentProps<\"a\"> & {\n  name: IconName\n  size?: IconSize\n}) {\n  return (\n    <li>\n      <a className={cn(`icon__${name}--${size}`, className)} {...props} />\n    </li>\n  )\n}\n\nexport { Icon, SocialIconLink, SocialIcons }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

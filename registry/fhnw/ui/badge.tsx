@@ -2,22 +2,26 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+import "./fhnw-bootstrap.css"
 
-const badgeVariants = cva(
-  "inline-flex items-center justify-center px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.24em]",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground",
-        secondary: "bg-secondary text-secondary-foreground",
-        outline: "border border-black bg-transparent text-black",
-      },
+const badgeVariants = cva("badge", {
+  variants: {
+    variant: {
+      default: "bg-primary",
+      secondary: "bg-secondary text-black",
+      success: "bg-success",
+      danger: "bg-danger",
+      warning: "bg-warning text-black",
+      info: "bg-info text-black",
+      light: "bg-light text-black",
+      dark: "bg-dark text-black",
+      outline: "bg-light text-black border border-black",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-)
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+})
 
 function Badge({
   className,

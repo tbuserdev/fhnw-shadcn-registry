@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "testimonial",
+  "title": "Testimonial",
+  "description": "FHNW testimonial layout.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/testimonial.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\nfunction Testimonial({\n  className,\n  quote,\n  author,\n  imageSrc,\n  imageAlt = \"\",\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  quote: React.ReactNode\n  author: React.ReactNode\n  imageSrc?: string\n  imageAlt?: string\n}) {\n  return (\n    <div className={cn(\"blockquote row mt-5\", className)} {...props}>\n      {imageSrc ? (\n        <div className=\"col-6 col-md-4 mb-4 mb-md-0\">\n          <img src={imageSrc} className=\"img-fluid float-start w-100\" alt={imageAlt} />\n        </div>\n      ) : null}\n      <div className={cn(imageSrc ? \"col-12 col-md-8\" : \"col-12\")}>\n        <p className=\"quote\">{quote}</p>\n        <p className=\"author\">{author}</p>\n      </div>\n    </div>\n  )\n}\n\nexport { Testimonial }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

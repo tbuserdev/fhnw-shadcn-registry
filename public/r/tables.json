@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tables",
+  "title": "Tables",
+  "description": "FHNW table styles.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/tables.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport \"./fhnw-bootstrap.css\"\n\nconst Table = React.forwardRef<\n  HTMLTableElement,\n  React.ComponentPropsWithoutRef<\"table\">\n>(({ className, ...props }, ref) => (\n  <table ref={ref} className={cn(\"table\", className)} {...props} />\n))\n\nTable.displayName = \"Table\"\n\nconst TableResponsive = React.forwardRef<\n  HTMLDivElement,\n  React.ComponentPropsWithoutRef<\"div\">\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"table-responsive\", className)} {...props} />\n))\n\nTableResponsive.displayName = \"TableResponsive\"\n\nexport { Table, TableResponsive }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
