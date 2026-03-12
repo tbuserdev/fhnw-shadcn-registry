@@ -9,7 +9,7 @@ const Progress = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("w-full overflow-hidden bg-[#f1f1ee] h-6", className)}
+    className={cn("w-full overflow-hidden bg-[#e9ecef] h-6", className)}
     {...props}
   />
 ));

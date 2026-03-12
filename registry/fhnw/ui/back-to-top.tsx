@@ -30,7 +30,7 @@ function BackToTop({
       href="#top"
       aria-label="Back to top"
       className={cn(
-        "fixed bottom-6 right-6 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black text-white hover:bg-gray-900 transition-opacity focus-visible:outline-none",
+        "fixed bottom-6 right-6 inline-flex items-center justify-center h-10 w-10 bg-black text-white hover:bg-[#1a1a1a] transition-opacity focus-visible:outline-none",
         !visible && "pointer-events-none",
         className,
       )}

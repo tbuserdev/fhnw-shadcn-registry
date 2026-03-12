@@ -36,7 +36,7 @@ function Carousel({
 
   return (
     <div
-      className={cn("relative w-full overflow-hidden rounded", className)}
+      className={cn("relative w-full overflow-hidden", className)}
       {...props}
     >
       {showIndicators && items.length > 1 ? (
@@ -46,8 +46,8 @@ function Carousel({
               key={index}
               type="button"
               className={cn(
-                "h-3 w-3 rounded-full transition-all duration-300",
-                index === activeIndex ? "bg-black" : "bg-gray-400",
+                "h-3 w-3 transition-all duration-300",
+                index === activeIndex ? "bg-black" : "bg-[#deded9]",
               )}
               aria-current={index === activeIndex}
               aria-label={`Slide ${index + 1}`}
@@ -56,7 +56,7 @@ function Carousel({
           ))}
         </div>
       ) : null}
-      <div className="relative w-full h-full">
+      <div className="relative w-full">
         {items.map((child, index) =>
           React.isValidElement(child)
             ? React.cloneElement(child, {
@@ -69,7 +69,7 @@ function Carousel({
       {showControls && items.length > 1 ? (
         <>
           <button
-            className="absolute left-4 top-1/2 z-10 -translate-y-1/2 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black text-white hover:bg-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="absolute left-4 top-1/2 z-10 -translate-y-1/2 inline-flex items-center justify-center h-10 w-10 bg-black text-white hover:bg-[#1a1a1a] transition-colors focus-visible:outline-none"
             type="button"
             aria-label="Previous slide"
             onClick={() =>
@@ -93,7 +93,7 @@ function Carousel({
             </svg>
           </button>
           <button
-            className="absolute right-4 top-1/2 z-10 -translate-y-1/2 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black text-white hover:bg-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="absolute right-4 top-1/2 z-10 -translate-y-1/2 inline-flex items-center justify-center h-10 w-10 bg-black text-white hover:bg-[#1a1a1a] transition-colors focus-visible:outline-none"
             type="button"
             aria-label="Next slide"
             onClick={() =>

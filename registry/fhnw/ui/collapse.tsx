@@ -60,7 +60,7 @@ function CollapseTrigger({
     <button
       type="button"
       className={cn(
-        "inline-flex items-center justify-center gap-2 cursor-pointer font-medium transition-colors outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-black text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 px-5 py-2.5 text-sm",
+        "inline-flex items-center justify-center gap-2 cursor-pointer font-medium transition-colors outline-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-black text-white hover:bg-[#1a1a1a] px-5 py-2.5 text-sm",
         className,
       )}
       aria-expanded={context.open}

@@ -116,7 +116,7 @@ function PopoverTrigger({
       ref={setTriggerRef}
       type="button"
       className={cn(
-        "inline-flex items-center justify-center gap-2 cursor-pointer font-medium transition-colors outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-black text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 px-5 py-2.5 text-sm",
+        "inline-flex items-center justify-center gap-2 cursor-pointer font-medium transition-colors outline-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-black text-white hover:bg-[#1a1a1a] px-5 py-2.5 text-sm",
         className,
       )}
       aria-expanded={open}
@@ -193,10 +193,7 @@ function PopoverContent({
   return createPortal(
     <div
       ref={contentRef}
-      className={cn(
-        "rounded-lg bg-white shadow-lg border border-gray-300 p-4 max-w-sm",
-        className,
-      )}
+      className={cn("bg-white border border-[#deded9] p-4 max-w-sm", className)}
       style={style}
       {...props}
     >
@@ -211,7 +208,7 @@ function PopoverHeader({ className, ...props }: React.ComponentProps<"h3">) {
   return (
     <h3
       className={cn(
-        "text-lg font-semibold text-black border-b border-gray-300 pb-3 mb-3",
+        "text-lg font-semibold text-black border-b border-[#deded9] pb-3 mb-3",
         className,
       )}
       {...props}
@@ -220,7 +217,7 @@ function PopoverHeader({ className, ...props }: React.ComponentProps<"h3">) {
 }
 
 function PopoverBody({ className, ...props }: React.ComponentProps<"div">) {
-  return <div className={cn("text-sm text-gray-700", className)} {...props} />;
+  return <div className={cn("text-sm text-[#4c4c4c]", className)} {...props} />;
 }
 
 export { Popover, PopoverBody, PopoverContent, PopoverHeader, PopoverTrigger };

@@ -13,8 +13,8 @@ function LoadingSpinner({
   return (
     <div
       className={cn(
-        "flex items-center justify-center p-[3rem]",
-        variant === "white" && "bg-black",
+        "inline-flex items-center justify-center",
+        variant === "white" && "bg-black p-8",
         className,
       )}
       {...props}

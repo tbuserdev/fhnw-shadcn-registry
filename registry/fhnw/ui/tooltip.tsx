@@ -96,7 +96,7 @@ function Tooltip({
         ? createPortal(
             <div
               className={cn(
-                "rounded bg-gray-900 text-white text-sm px-3 py-2 max-w-xs",
+                "bg-black text-white text-sm px-3 py-2 max-w-xs",
                 className,
               )}
               role="tooltip"

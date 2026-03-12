@@ -5,18 +5,18 @@ import { cn } from "@/lib/utils";
 import "./fhnw-components.css";
 
 const badgeVariants = cva(
-  "inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-semibold",
+  "inline-flex items-center gap-1 px-2.5 py-0.5 text-xs font-semibold",
   {
     variants: {
       variant: {
         default: "bg-black text-white",
         secondary: "bg-[#fde703] text-black",
-        success: "bg-green-100 text-green-800",
-        danger: "bg-red-100 text-red-800",
-        warning: "bg-yellow-100 text-yellow-800",
-        info: "bg-blue-100 text-blue-800",
-        light: "bg-gray-100 text-black",
-        dark: "bg-gray-900 text-white",
+        success: "bg-[#28a745] text-white",
+        danger: "bg-[#df305b] text-white",
+        warning: "bg-[#fde703] text-black",
+        info: "bg-[#dee2e6] text-black",
+        light: "bg-[#f1f1ee] text-black",
+        dark: "bg-black text-white",
         outline: "border-2 border-black bg-white text-black",
       },
     },

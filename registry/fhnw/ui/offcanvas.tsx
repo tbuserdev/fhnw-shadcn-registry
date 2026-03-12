@@ -81,7 +81,7 @@ function OffcanvasTrigger({
     <button
       type="button"
       className={cn(
-        "inline-flex items-center justify-center gap-2 cursor-pointer font-medium transition-colors outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-black text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 px-5 py-2.5 text-sm",
+        "inline-flex items-center justify-center gap-2 cursor-pointer font-medium transition-colors outline-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-black text-white hover:bg-[#1a1a1a] px-5 py-2.5 text-sm",
         className,
       )}
       onClick={(event) => {
@@ -124,7 +124,7 @@ function OffcanvasContent({
       />
       <div
         className={cn(
-          "fixed z-50 bg-white shadow-xl transition-transform duration-300 h-full w-64 overflow-y-auto",
+          "fixed z-50 bg-white transition-transform duration-300 h-full w-64 overflow-y-auto",
           placement === "start" && "left-0 top-0 -translate-x-full",
           placement === "end" && "right-0 top-0 translate-x-full",
           placement === "top" && "top-0 left-0 -translate-y-full w-full h-auto",
@@ -147,7 +147,7 @@ function OffcanvasHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "flex items-center justify-between border-b border-gray-300 px-4 py-4",
+        "flex items-center justify-between border-b border-[#deded9] px-4 py-4",
         className,
       )}
       {...props}
@@ -183,7 +183,7 @@ function OffcanvasClose({
     <button
       type="button"
       className={cn(
-        "inline-flex items-center justify-center rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 p-2",
+        "inline-flex items-center justify-center hover:bg-[#f1f1ee] focus-visible:outline-none p-2",
         className,
       )}
       aria-label="Close"

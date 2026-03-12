@@ -45,7 +45,7 @@ const BreadcrumbPage = React.forwardRef<
   <span
     ref={ref}
     aria-current="page"
-    className={cn("text-gray-600", className)}
+    className={cn("text-[#767573]", className)}
     {...props}
   />
 ));

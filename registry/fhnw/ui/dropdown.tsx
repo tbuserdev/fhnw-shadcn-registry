@@ -185,7 +185,7 @@ function DropdownMenuLink({
 function DropdownMenuDivider(props: React.ComponentProps<"hr">) {
   return (
     <li>
-      <hr className="border-t border-gray-300" {...props} />
+      <hr className="border-t border-[#deded9]" {...props} />
     </li>
   );
 }

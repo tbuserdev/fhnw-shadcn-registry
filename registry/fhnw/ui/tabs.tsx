@@ -75,8 +75,8 @@ function TabsTrigger({
       <button
         data-slot="tabs-trigger"
         className={cn(
-          "px-4 py-2 font-medium text-black transition-colors hover:bg-gray-100 focus-visible:outline-none",
-          isActive && "border-b-2 border-[#fde703] font-semibold",
+          "px-4 py-2 font-medium text-[#767573] transition-colors hover:bg-[#f1f1ee] focus-visible:outline-none",
+          isActive && "border-b-2 border-[#fde703] font-semibold text-black",
           className,
         )}
         type="button"

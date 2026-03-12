@@ -7,16 +7,16 @@ import "./fhnw-components.css";
 const alertVariants = cva("relative px-6 py-6 mb-4 text-base", {
   variants: {
     variant: {
-      default: "bg-black/[0.08] text-black",
-      primary: "bg-black/[0.08] text-black",
-      secondary: "bg-[#fde703]/30 text-black",
-      success: "bg-[#28a745]/15 text-[#0a3622]",
-      destructive: "bg-[#df305b]/15 text-[#58151c]",
-      danger: "bg-[#df305b]/15 text-[#58151c]",
-      warning: "bg-[#fbd100]/20 text-black",
+      default: "bg-black text-white",
+      primary: "bg-black text-white",
+      secondary: "bg-[#fde703] text-black",
+      success: "bg-[#28a745] text-white",
+      destructive: "bg-[#df305b] text-white",
+      danger: "bg-[#df305b] text-white",
+      warning: "bg-[#fde703] text-black",
       info: "bg-[#dee2e6] text-black",
       light: "bg-[#f1f1ee] text-black",
-      dark: "bg-[#dee2e6]/70 text-black",
+      dark: "bg-black text-white",
     },
   },
   defaultVariants: {

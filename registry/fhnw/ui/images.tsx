@@ -46,7 +46,7 @@ const FigureCaption = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <figcaption
     ref={ref}
-    className={cn("text-sm text-gray-600", className)}
+    className={cn("text-sm text-[#767573]", className)}
     {...props}
   />
 ));
