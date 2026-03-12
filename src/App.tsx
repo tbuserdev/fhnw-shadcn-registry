@@ -25,21 +25,26 @@ const registryItems = [
 ]
 
 function App() {
+  const baseUrl = import.meta.env.BASE_URL
+  const withBase = (path: string) => `${baseUrl}${path.replace(/^\/+/, "")}`
+
   const origin =
     typeof window !== "undefined"
       ? window.location.origin
       : "https://registry.example.com"
 
+  const registryBaseUrl = new URL(withBase("r/{name}.json"), origin).toString()
+
   const registryConfig = `{
   "registries": {
-    "@fhnw": "${origin}/r/{name}.json"
+    "@fhnw": "${registryBaseUrl}"
   }
 }`
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(253,231,3,0.28),_transparent_32%),linear-gradient(180deg,_#f7f7f5_0%,_#ffffff_40%,_#f7f7f5_100%)]">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-4 sm:px-6 lg:px-8">
-        <SiteHeader />
+        <SiteHeader registryBasePath={baseUrl} />
 
         <section className="grid gap-6 border-2 border-black bg-white p-6 shadow-[0_22px_60px_rgba(0,0,0,0.08)] lg:grid-cols-[1.4fr_0.9fr] lg:p-10">
           <div className="space-y-5">
@@ -59,7 +64,7 @@ function App() {
           <div className="grid gap-3 bg-muted p-5 text-sm text-foreground/80">
             <div className="flex items-center justify-between border-b border-border pb-3">
               <span className="font-semibold text-black">Deployment</span>
-              <span>Cloudflare Pages</span>
+              <span>GitHub Pages / static hosting</span>
             </div>
             <div className="flex items-center justify-between border-b border-border pb-3">
               <span className="font-semibold text-black">Baseline</span>
@@ -73,7 +78,7 @@ function App() {
               <span className="font-semibold text-black">Static registry</span>
               <a
                 className="inline-flex items-center gap-1 font-semibold text-black hover:underline"
-                href="/r/registry.json"
+                href={withBase("r/registry.json")}
               >
                 Open index
                 <ArrowUpRightIcon className="size-4" />
@@ -130,7 +135,7 @@ pnpm dlx shadcn@latest add @fhnw/study-form`}</code>
               {registryItems.map((name) => (
                 <a
                   key={name}
-                  href={`/r/${name}.json`}
+                  href={withBase(`r/${name}.json`)}
                   className="inline-flex items-center justify-between border border-white/18 bg-white/6 px-3 py-3 text-sm transition hover:border-secondary hover:bg-white/10"
                 >
                   <span>{name}</span>
@@ -160,7 +165,7 @@ pnpm dlx shadcn@latest add @fhnw/study-form`}</code>
                   </p>
                 </div>
                 <a
-                  href="/r/site-header.json"
+                  href={withBase("r/site-header.json")}
                   className="inline-flex items-center gap-1 text-sm font-semibold text-black hover:underline"
                 >
                   JSON
@@ -168,7 +173,7 @@ pnpm dlx shadcn@latest add @fhnw/study-form`}</code>
                 </a>
               </div>
               <div className="overflow-hidden border border-border">
-                <SiteHeader />
+                <SiteHeader registryBasePath={baseUrl} />
               </div>
             </article>
 
@@ -182,7 +187,7 @@ pnpm dlx shadcn@latest add @fhnw/study-form`}</code>
                     </p>
                   </div>
                   <a
-                    href="/r/study-form.json"
+                    href={withBase("r/study-form.json")}
                     className="inline-flex items-center gap-1 text-sm font-semibold text-black hover:underline"
                   >
                     JSON
@@ -201,7 +206,7 @@ pnpm dlx shadcn@latest add @fhnw/study-form`}</code>
                     </p>
                   </div>
                   <a
-                    href="/r/programme-showcase.json"
+                    href={withBase("r/programme-showcase.json")}
                     className="inline-flex items-center gap-1 text-sm font-semibold text-black hover:underline"
                   >
                     JSON
@@ -221,7 +226,7 @@ pnpm dlx shadcn@latest add @fhnw/study-form`}</code>
                   </p>
                 </div>
                 <a
-                  href="/r/campus-faq.json"
+                  href={withBase("r/campus-faq.json")}
                   className="inline-flex items-center gap-1 text-sm font-semibold text-black hover:underline"
                 >
                   JSON

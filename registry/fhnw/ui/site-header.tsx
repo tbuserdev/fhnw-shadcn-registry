@@ -8,7 +8,15 @@ const links = [
   { href: "/r/registry.json", label: "Registry JSON" },
 ]
 
-function SiteHeader() {
+function joinRegistryPath(basePath: string | undefined, path: string) {
+  if (!basePath || basePath === "/") {
+    return path
+  }
+
+  return `${basePath.replace(/\/+$/, "")}/${path.replace(/^\/+/, "")}`
+}
+
+function SiteHeader({ registryBasePath }: { registryBasePath?: string }) {
   return (
     <header className="border-2 border-black bg-white">
       <div className="flex flex-col gap-4 px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
@@ -26,7 +34,11 @@ function SiteHeader() {
           {links.map((link) => (
             <a
               key={link.label}
-              href={link.href}
+              href={
+                link.href.startsWith("/r/")
+                  ? joinRegistryPath(registryBasePath, link.href)
+                  : link.href
+              }
               className={cn(
                 buttonVariants({ variant: "ghost", size: "sm" }),
                 "no-underline"
@@ -36,7 +48,7 @@ function SiteHeader() {
             </a>
           ))}
           <a
-            href="/r/style-fhnw.json"
+            href={joinRegistryPath(registryBasePath, "/r/style-fhnw.json")}
             className={cn(
               buttonVariants({ variant: "secondary", size: "sm" }),
               "no-underline"

@@ -24,4 +24,20 @@ pnpm registry:build
 pnpm build
 ```
 
-Cloudflare Pages output directory: `dist`
+Output directory: `dist`
+
+## GitHub Pages
+
+This repo includes a deployment workflow at [.github/workflows/deploy-pages.yml](/Users/timbuser/Documents/FHNW/fhnw-shadcn-registry/.github/workflows/deploy-pages.yml).
+
+To publish it:
+
+1. Push the repository to GitHub.
+2. Open repository settings and go to Pages.
+3. Set the source to `GitHub Actions`.
+4. Push to `main` or run the workflow manually.
+
+The workflow computes the correct Vite base path automatically for:
+
+- `https://<user>.github.io/`
+- `https://<user>.github.io/<repo>/`
