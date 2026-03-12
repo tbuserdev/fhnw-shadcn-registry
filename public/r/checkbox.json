@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "FHNW checkbox.",
+  "dependencies": [
+    "@base-ui/react",
+    "@phosphor-icons/react"
+  ],
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/checkbox.tsx",
+      "content": "import { CheckIcon } from \"@phosphor-icons/react\"\nimport { Checkbox as CheckboxPrimitive } from \"@base-ui/react/checkbox\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {\n  return (\n    <CheckboxPrimitive.Root\n      data-slot=\"checkbox\"\n      className={cn(\n        \"flex size-5 shrink-0 items-center justify-center border-2 border-input bg-white outline-none transition-colors focus-visible:border-black focus-visible:ring-4 focus-visible:ring-ring/25 disabled:cursor-not-allowed disabled:bg-accent data-checked:border-black data-checked:bg-secondary\",\n        className\n      )}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator\n        data-slot=\"checkbox-indicator\"\n        className=\"flex items-center justify-center text-black\"\n      >\n        <CheckIcon className=\"size-4\" />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  )\n}\n\nexport { Checkbox }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

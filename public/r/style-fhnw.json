@@ -1,0 +1,84 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "style-fhnw",
+  "title": "FHNW Theme",
+  "description": "FHNW tokens and base styles for shadcn Base UI projects.",
+  "dependencies": [
+    "@fontsource/inter",
+    "tw-animate-css"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "cssVars": {
+    "light": {
+      "background": "#ffffff",
+      "foreground": "#4c4c4c",
+      "card": "#ffffff",
+      "card-foreground": "#4c4c4c",
+      "popover": "#ffffff",
+      "popover-foreground": "#4c4c4c",
+      "primary": "#000000",
+      "primary-foreground": "#ffffff",
+      "secondary": "#fde703",
+      "secondary-foreground": "#000000",
+      "muted": "#f1f1ee",
+      "muted-foreground": "#767573",
+      "accent": "#f7f7f5",
+      "accent-foreground": "#000000",
+      "destructive": "#df305b",
+      "border": "#deded9",
+      "input": "#deded9",
+      "ring": "#0d6efd",
+      "radius": "0px"
+    }
+  },
+  "css": {
+    "@import \"tw-animate-css\"": {},
+    "@import \"@fontsource/inter\"": {},
+    ":root": {
+      "--fhnw-canvas": "#f7f7f5",
+      "--fhnw-highlight": "#fef387",
+      "--fhnw-shadow": "0 18px 40px rgba(0, 0, 0, 0.08)"
+    },
+    "html": {
+      "font-family": "\"Inter\", sans-serif",
+      "scroll-behavior": "smooth"
+    },
+    "body": {
+      "font-family": "\"Inter\", sans-serif",
+      "line-height": "1.625",
+      "color": "var(--foreground)",
+      "background-color": "var(--background)"
+    },
+    "::selection": {
+      "color": "#000000",
+      "background-color": "var(--secondary)"
+    },
+    "h1, h2, h3, h4, h5, h6": {
+      "color": "#000000",
+      "font-weight": "600",
+      "line-height": "1.15",
+      "letter-spacing": "-0.03em",
+      "text-wrap": "balance"
+    },
+    "h1": {
+      "font-size": "clamp(2.5rem, 5vw, 4.75rem)"
+    },
+    "h2": {
+      "font-size": "clamp(1.875rem, 3vw, 3rem)"
+    },
+    "h3": {
+      "font-size": "clamp(1.375rem, 2vw, 2rem)"
+    },
+    "a": {
+      "color": "inherit",
+      "text-decoration": "underline",
+      "text-underline-offset": "0.2em"
+    },
+    "a:hover": {
+      "color": "#000000"
+    }
+  },
+  "type": "registry:item"
+}

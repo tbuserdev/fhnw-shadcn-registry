@@ -1,77 +1,308 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "acme",
-  "homepage": "https://acme.com",
+  "name": "@fhnw",
+  "homepage": "https://www.fhnw.ch",
   "items": [
     {
-      "name": "hello-world",
-      "type": "registry:component",
-      "title": "Hello World",
-      "description": "A simple hello world component",
-      "registryDependencies": ["button"],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/hello-world/hello-world.tsx",
-          "type": "registry:component"
+      "name": "style-fhnw",
+      "type": "registry:item",
+      "title": "FHNW Theme",
+      "description": "FHNW tokens and base styles for shadcn Base UI projects.",
+      "dependencies": ["@fontsource/inter", "tw-animate-css"],
+      "registryDependencies": ["utils"],
+      "cssVars": {
+        "light": {
+          "background": "#ffffff",
+          "foreground": "#4c4c4c",
+          "card": "#ffffff",
+          "card-foreground": "#4c4c4c",
+          "popover": "#ffffff",
+          "popover-foreground": "#4c4c4c",
+          "primary": "#000000",
+          "primary-foreground": "#ffffff",
+          "secondary": "#fde703",
+          "secondary-foreground": "#000000",
+          "muted": "#f1f1ee",
+          "muted-foreground": "#767573",
+          "accent": "#f7f7f5",
+          "accent-foreground": "#000000",
+          "destructive": "#df305b",
+          "border": "#deded9",
+          "input": "#deded9",
+          "ring": "#0d6efd",
+          "radius": "0px"
         }
-      ]
+      },
+      "css": {
+        "@import \"tw-animate-css\"": {},
+        "@import \"@fontsource/inter\"": {},
+        ":root": {
+          "--fhnw-canvas": "#f7f7f5",
+          "--fhnw-highlight": "#fef387",
+          "--fhnw-shadow": "0 18px 40px rgba(0, 0, 0, 0.08)"
+        },
+        "html": {
+          "font-family": "\"Inter\", sans-serif",
+          "scroll-behavior": "smooth"
+        },
+        "body": {
+          "font-family": "\"Inter\", sans-serif",
+          "line-height": "1.625",
+          "color": "var(--foreground)",
+          "background-color": "var(--background)"
+        },
+        "::selection": {
+          "color": "#000000",
+          "background-color": "var(--secondary)"
+        },
+        "h1, h2, h3, h4, h5, h6": {
+          "color": "#000000",
+          "font-weight": "600",
+          "line-height": "1.15",
+          "letter-spacing": "-0.03em",
+          "text-wrap": "balance"
+        },
+        "h1": {
+          "font-size": "clamp(2.5rem, 5vw, 4.75rem)"
+        },
+        "h2": {
+          "font-size": "clamp(1.875rem, 3vw, 3rem)"
+        },
+        "h3": {
+          "font-size": "clamp(1.375rem, 2vw, 2rem)"
+        },
+        "a": {
+          "color": "inherit",
+          "text-decoration": "underline",
+          "text-underline-offset": "0.2em"
+        },
+        "a:hover": {
+          "color": "#000000"
+        }
+      }
     },
     {
-      "name": "example-form",
-      "type": "registry:component",
-      "title": "Example Form",
-      "description": "A contact form with Zod validation.",
-      "dependencies": ["zod"],
-      "registryDependencies": ["button", "input", "label", "textarea", "card"],
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "Shared class name utility.",
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
-          "path": "registry/new-york/blocks/example-form/example-form.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "complex-component",
-      "type": "registry:component",
-      "title": "Complex Component",
-      "description": "A complex component showing hooks, libs and components.",
-      "registryDependencies": ["card"],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/complex-component/page.tsx",
-          "type": "registry:page",
-          "target": "app/pokemon/page.tsx"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/components/pokemon-card.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/components/pokemon-image.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/lib/pokemon.ts",
+          "path": "lib/utils.ts",
           "type": "registry:lib"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/hooks/use-pokemon.ts",
-          "type": "registry:hook"
         }
       ]
     },
     {
-      "name": "example-with-css",
-      "type": "registry:component",
-      "title": "Example with CSS",
-      "description": "A login form with a CSS file.",
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "FHNW button styles for Base UI buttons.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["style-fhnw"],
       "files": [
         {
-          "path": "registry/new-york/blocks/example-with-css/example-card.tsx",
-          "type": "registry:component"
-        },
+          "path": "registry/fhnw/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "FHNW text input.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["style-fhnw"],
+      "files": [
         {
-          "path": "registry/new-york/blocks/example-with-css/example-card.css",
+          "path": "registry/fhnw/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "FHNW textarea.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "FHNW select wrapper for Base UI.",
+      "dependencies": ["@base-ui/react", "@phosphor-icons/react"],
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "FHNW checkbox.",
+      "dependencies": ["@base-ui/react", "@phosphor-icons/react"],
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "FHNW radio group.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "FHNW content card.",
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "FHNW alert box.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "FHNW badge styles.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "FHNW tab navigation.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "FHNW accordion.",
+      "dependencies": ["@base-ui/react", "@phosphor-icons/react"],
+      "registryDependencies": ["style-fhnw"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "site-header",
+      "type": "registry:ui",
+      "title": "Site Header",
+      "description": "FHNW header strip and navigation.",
+      "registryDependencies": ["button", "badge"],
+      "files": [
+        {
+          "path": "registry/fhnw/ui/site-header.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "study-form",
+      "type": "registry:block",
+      "title": "Study Form",
+      "description": "FHNW application form block.",
+      "registryDependencies": [
+        "button",
+        "input",
+        "textarea",
+        "select",
+        "checkbox",
+        "radio-group",
+        "card",
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/study-form/study-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "programme-showcase",
+      "type": "registry:block",
+      "title": "Programme Showcase",
+      "description": "FHNW programme teaser block.",
+      "registryDependencies": ["button", "card", "badge", "alert"],
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/programme-showcase/programme-showcase.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "campus-faq",
+      "type": "registry:block",
+      "title": "Campus FAQ",
+      "description": "FHNW FAQ and campus details block.",
+      "registryDependencies": ["tabs", "accordion", "alert", "badge", "button"],
+      "files": [
+        {
+          "path": "registry/fhnw/blocks/campus-faq/campus-faq.tsx",
           "type": "registry:component"
         }
       ]

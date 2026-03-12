@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "title": "Radio Group",
+  "description": "FHNW radio group.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/radio-group.tsx",
+      "content": "import { Radio as RadioPrimitive } from \"@base-ui/react/radio\"\nimport { RadioGroup as RadioGroupPrimitive } from \"@base-ui/react/radio-group\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {\n  return (\n    <RadioGroupPrimitive\n      data-slot=\"radio-group\"\n      className={cn(\"grid gap-3\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {\n  return (\n    <RadioPrimitive.Root\n      data-slot=\"radio-group-item\"\n      className={cn(\n        \"relative flex size-5 shrink-0 rounded-full border-2 border-input bg-white outline-none transition-colors focus-visible:border-black focus-visible:ring-4 focus-visible:ring-ring/25 disabled:cursor-not-allowed disabled:bg-accent data-checked:border-black data-checked:bg-secondary\",\n        className\n      )}\n      {...props}\n    >\n      <RadioPrimitive.Indicator\n        data-slot=\"radio-group-indicator\"\n        className=\"absolute inset-0 flex items-center justify-center\"\n      >\n        <span className=\"size-2 rounded-full bg-black\" />\n      </RadioPrimitive.Indicator>\n    </RadioPrimitive.Root>\n  )\n}\n\nexport { RadioGroup, RadioGroupItem }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

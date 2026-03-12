@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "description": "FHNW badge styles.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/badge.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst badgeVariants = cva(\n  \"inline-flex items-center justify-center px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.24em]\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground\",\n        secondary: \"bg-secondary text-secondary-foreground\",\n        outline: \"border border-black bg-transparent text-black\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nfunction Badge({\n  className,\n  variant,\n  ...props\n}: React.ComponentProps<\"span\"> & VariantProps<typeof badgeVariants>) {\n  return (\n    <span\n      data-slot=\"badge\"\n      className={cn(badgeVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nexport { Badge, badgeVariants }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

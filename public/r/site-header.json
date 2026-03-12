@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "site-header",
+  "title": "Site Header",
+  "description": "FHNW header strip and navigation.",
+  "registryDependencies": [
+    "button",
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/site-header.tsx",
+      "content": "import { Badge } from \"@/registry/fhnw/ui/badge\"\nimport { buttonVariants } from \"@/registry/fhnw/ui/button\"\nimport { cn } from \"@/lib/utils\"\n\nconst links = [\n  { href: \"#install\", label: \"Install\" },\n  { href: \"#previews\", label: \"Previews\" },\n  { href: \"/r/registry.json\", label: \"Registry JSON\" },\n]\n\nfunction SiteHeader() {\n  return (\n    <header className=\"border-2 border-black bg-white\">\n      <div className=\"flex flex-col gap-4 px-5 py-4 lg:flex-row lg:items-center lg:justify-between\">\n        <div className=\"flex flex-wrap items-center gap-3\">\n          <span className=\"bg-black px-3 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-white\">\n            FHNW\n          </span>\n          <Badge variant=\"secondary\">Base UI Registry</Badge>\n          <span className=\"text-sm text-foreground/70\">\n            Light-theme primitives for Vite and shadcn.\n          </span>\n        </div>\n\n        <nav className=\"flex flex-wrap items-center gap-2\">\n          {links.map((link) => (\n            <a\n              key={link.label}\n              href={link.href}\n              className={cn(\n                buttonVariants({ variant: \"ghost\", size: \"sm\" }),\n                \"no-underline\"\n              )}\n            >\n              {link.label}\n            </a>\n          ))}\n          <a\n            href=\"/r/style-fhnw.json\"\n            className={cn(\n              buttonVariants({ variant: \"secondary\", size: \"sm\" }),\n              \"no-underline\"\n            )}\n          >\n            Theme JSON\n          </a>\n        </nav>\n      </div>\n    </header>\n  )\n}\n\nexport { SiteHeader }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

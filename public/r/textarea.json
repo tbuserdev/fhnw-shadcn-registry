@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "FHNW textarea.",
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/textarea.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(\n        \"min-h-32 w-full border-2 border-input bg-muted px-4 py-3 text-[0.95rem] text-black transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-black focus-visible:bg-background focus-visible:ring-4 focus-visible:ring-ring/25 disabled:cursor-not-allowed disabled:bg-accent\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Textarea }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

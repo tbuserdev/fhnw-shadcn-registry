@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "title": "Tabs",
+  "description": "FHNW tab navigation.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/tabs.tsx",
+      "content": "import { Tabs as TabsPrimitive } from \"@base-ui/react/tabs\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Tabs({\n  className,\n  orientation = \"horizontal\",\n  ...props\n}: TabsPrimitive.Root.Props) {\n  return (\n    <TabsPrimitive.Root\n      data-slot=\"tabs\"\n      data-orientation={orientation}\n      className={cn(\"flex gap-6 data-[orientation=horizontal]:flex-col\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction TabsList({ className, ...props }: TabsPrimitive.List.Props) {\n  return (\n    <TabsPrimitive.List\n      data-slot=\"tabs-list\"\n      className={cn(\n        \"inline-flex flex-wrap gap-2 border-b-2 border-border pb-2\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {\n  return (\n    <TabsPrimitive.Tab\n      data-slot=\"tabs-trigger\"\n      className={cn(\n        \"border-2 border-transparent px-4 py-2 text-sm font-semibold text-foreground/70 outline-none transition-colors hover:text-black focus-visible:border-black focus-visible:ring-4 focus-visible:ring-ring/25 data-active:border-black data-active:bg-secondary data-active:text-black\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {\n  return (\n    <TabsPrimitive.Panel\n      data-slot=\"tabs-content\"\n      className={cn(\"text-sm/7 outline-none\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Tabs, TabsContent, TabsList, TabsTrigger }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

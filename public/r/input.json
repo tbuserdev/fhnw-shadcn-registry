@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "title": "Input",
+  "description": "FHNW text input.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "style-fhnw"
+  ],
+  "files": [
+    {
+      "path": "registry/fhnw/ui/input.tsx",
+      "content": "import * as React from \"react\"\nimport { Input as InputPrimitive } from \"@base-ui/react/input\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Input({ className, type, ...props }: React.ComponentProps<\"input\">) {\n  return (\n    <InputPrimitive\n      data-slot=\"input\"\n      type={type}\n      className={cn(\n        \"min-h-12 w-full border-2 border-input bg-muted px-4 py-3 text-[0.95rem] text-black transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-black focus-visible:bg-background focus-visible:ring-4 focus-visible:ring-ring/25 disabled:cursor-not-allowed disabled:bg-accent\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Input }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
